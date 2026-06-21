@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ECOTRACE | TRACK YOUR IMPACT</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Archivo+Narrow:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "inverse-on-surface": "#f1f1f1",
+                      "on-primary-container": "#746900",
+                      "on-primary-fixed": "#201c00",
+                      "on-error-container": "#93000a",
+                      "on-background": "#1b1b1b",
+                      "surface-variant": "#e2e2e2",
+                      "surface-bright": "#f9f9f9",
+                      "primary-fixed-dim": "#dbc90a",
+                      "primary": "#695f00",
+                      "outline-variant": "#cdc7ac",
+                      "surface-tint": "#695f00",
+                      "secondary": "#006875",
+                      "outline": "#7c7760",
+                      "on-secondary-fixed-variant": "#004f58",
+                      "tertiary-fixed": "#ffd7f5",
+                      "on-tertiary": "#ffffff",
+                      "inverse-surface": "#303030",
+                      "secondary-fixed-dim": "#00daf3",
+                      "on-tertiary-fixed-variant": "#810081",
+                      "on-secondary-container": "#00616d",
+                      "surface-container": "#eeeeee",
+                      "primary-fixed": "#f9e534",
+                      "error-container": "#ffdad6",
+                      "secondary-container": "#00e3fd",
+                      "on-secondary": "#ffffff",
+                      "tertiary": "#a900a9",
+                      "primary-container": "#ffeb3b",
+                      "on-error": "#ffffff",
+                      "background": "#f9f9f9",
+                      "on-tertiary-fixed": "#380038",
+                      "on-primary-fixed-variant": "#4f4800",
+                      "on-surface-variant": "#4a4733",
+                      "tertiary-fixed-dim": "#ffabf3",
+                      "secondary-fixed": "#9cf0ff",
+                      "on-surface": "#1b1b1b",
+                      "on-secondary-fixed": "#001f24",
+                      "on-tertiary-container": "#b900b9",
+                      "tertiary-container": "#ffe0f6",
+                      "inverse-primary": "#dbc90a",
+                      "on-primary": "#ffffff",
+                      "surface-container-low": "#f3f3f3",
+                      "surface": "#f9f9f9",
+                      "surface-container-high": "#e8e8e8",
+                      "surface-dim": "#dadada",
+                      "error": "#ba1a1a",
+                      "surface-container-lowest": "#ffffff",
+                      "surface-container-highest": "#e2e2e2"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "4px",
+                      "gutter": "24px",
+                      "border-width": "4px",
+                      "shadow-offset": "8px",
+                      "margin": "32px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Space Grotesk"],
+                      "headline-md": ["Space Grotesk"],
+                      "display": ["Space Grotesk"],
+                      "body-lg": ["Archivo Narrow"],
+                      "headline-lg": ["Space Grotesk"],
+                      "body-md": ["Archivo Narrow"],
+                      "label-sm": ["JetBrains Mono"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                      "display": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-lg": ["20px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                      "headline-lg": ["48px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "1.0", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #f9f9f9;
+            color: #1b1b1b;
+            cursor: crosshair;
+        }
+        .neo-shadow {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-btn-primary:active {
+            transform: translate(8px, 8px);
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+        }
+        .grid-bg {
+            background-image: radial-gradient(#1b1b1b 1px, transparent 1px);
+            background-size: 32px 32px;
+            opacity: 0.05;
+        }
+    </style>
+<script src="/static/js/api.js"></script></head>
+<body class="font-body-md overflow-x-hidden">
+<!-- Top Navigation (Mapped from JSON TopAppBar) -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center bg-background border-b-4 border-on-background shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary font-bold text-3xl">menu</span>
+<h1 class="font-display text-3xl font-bold uppercase text-primary tracking-tighter">ECOTRACE</h1>
+</div>
+<nav class="hidden md:flex gap-8 font-label-sm text-on-background font-bold tracking-widest">
+<a class="text-primary hover:underline" href="#">HOME</a>
+<a class="hover:text-primary transition-colors" href="#">TRACE</a>
+<a class="hover:text-primary transition-colors" href="#">STATS</a>
+<a class="hover:text-primary transition-colors" href="#">COMMUNITY</a>
+</nav>
+<div class="flex items-center gap-4">
+<button id="header-login-btn" onclick="window.location.href='/login'" class="bg-primary-container text-on-primary-container font-headline-md uppercase border-2 border-on-background py-2 px-6 neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-x-2 active:translate-y-2 active:shadow-none">LOGIN</button>
+</div>
+</header>
+<main class="pt-24 relative">
+<div class="absolute inset-0 grid-bg pointer-events-none"></div>
+<!-- Hero Section -->
+<section class="container mx-auto px-6 py-20 flex flex-col items-center text-center relative z-10">
+<div class="mb-6 inline-block bg-primary-container border-2 border-on-background px-4 py-1 font-label-sm text-on-primary-container neo-shadow-sm">
+                STATUS: ACTIVE_MONITORING
+            </div>
+<h2 class="font-display text-[80px] md:text-[120px] uppercase leading-none mb-8 tracking-tighter">
+                TRACK YOUR <span class="text-primary bg-primary-container px-4">IMPACT</span>
+</h2>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 w-full max-w-6xl mb-12 text-left relative z-10">
+    <!-- Left: Global Aggregate + Live Calculator -->
+    <div class="lg:col-span-8 bg-background border-4 border-on-background p-8 neo-shadow flex flex-col justify-between gap-6">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b-4 border-on-background pb-4 gap-4">
+            <div>
+                <p class="font-label-sm text-on-surface-variant mb-1">GLOBAL_CO2_REDUCTION_AGGREGATE</p>
+                <h3 class="font-display text-5xl font-bold text-on-background" id="impact-counter">1,248,302</h3>
+            </div>
+            <span class="bg-primary-container text-on-primary-container font-headline-md uppercase border-2 border-on-background px-4 py-2 text-sm italic">SYSTEM_READY</span>
+        </div>
+        
+        <div class="space-y-4 pt-2">
+            <h4 class="font-headline-md uppercase font-bold text-primary">Live Footprint Estimator</h4>
+            
+            <div class="space-y-2">
+                <div class="flex justify-between items-center">
+                    <label class="block text-xs font-black uppercase tracking-wider text-on-surface-variant">Weekly Commute (KM)</label>
+                    <span class="font-mono text-sm font-bold text-primary" id="commute-label">250 KM</span>
+                </div>
+                <input type="range" min="0" max="1000" value="250" id="hero-commute-slider" oninput="calculateHeroFootprint()" class="w-full h-8 bg-surface-container border-4 border-on-background appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-12 [&::-webkit-slider-thumb]:bg-primary-container [&::-webkit-slider-thumb]:border-4 [&::-webkit-slider-thumb]:border-on-background"/>
+            </div>
+            
+            <div class="space-y-2">
+                <label class="block text-xs font-black uppercase tracking-wider text-on-surface-variant">Dietary Preference</label>
+                <div class="grid grid-cols-4 gap-2" id="hero-diet-group">
+                    <button type="button" onclick="setHeroDiet('vegan', this)" class="py-2 border-2 border-on-background bg-white font-bold uppercase text-xs neo-shadow-sm hover:bg-primary-container transition-colors">Vegan</button>
+                    <button type="button" onclick="setHeroDiet('vegetarian', this)" class="py-2 border-2 border-on-background bg-white font-bold uppercase text-xs neo-shadow-sm hover:bg-primary-container transition-colors">Veg</button>
+                    <button type="button" onclick="setHeroDiet('omnivore', this)" class="py-2 border-2 border-on-background bg-primary-container font-bold uppercase text-xs neo-shadow-sm active-neo-shadow">Omni</button>
+                    <button type="button" onclick="setHeroDiet('meat_heavy', this)" class="py-2 border-2 border-on-background bg-white font-bold uppercase text-xs neo-shadow-sm hover:bg-primary-container transition-colors">Meat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Right: Telemetry Scanner & Live Estimated Result -->
+    <div class="lg:col-span-4 flex flex-col gap-6">
+        <!-- Live Result Box -->
+        <div class="bg-primary-fixed border-4 border-on-background p-6 neo-shadow text-center flex-grow flex flex-col justify-center gap-2">
+            <p class="font-label-sm text-on-primary-fixed-variant uppercase tracking-wider mb-2">Estimated Footprint</p>
+            <div>
+                <span class="text-7xl font-black italic text-on-background" id="hero-footprint-val">3.8</span>
+                <span class="text-xl font-bold uppercase block text-on-background">Tons CO2 / yr</span>
+            </div>
+        </div>
+        
+        <!-- Live Background Telemetry Simulation Panel -->
+        <div class="bg-black text-[#00ff00] p-6 border-4 border-on-background neo-shadow font-mono text-[10px] leading-relaxed select-none relative overflow-hidden h-40">
+            <div class="absolute top-2 right-2 flex items-center gap-1.5 bg-red-900/60 border border-red-600 text-red-500 font-bold px-2 py-0.5 animate-pulse text-[8px]">
+                <span class="w-1.5 h-1.5 rounded-full bg-red-600"></span> BG_SCANNING
+            </div>
+            <p class="text-[#00ff00]/60 uppercase tracking-widest text-[8px] mb-2 font-bold font-sans">Planetary Telemetry Flux</p>
+            <div id="telemetry-lines" class="space-y-1">
+                <div>&gt; AUTODETECT_STATION_TELEMETRY: ACTIVE</div>
+                <div id="telemetry-speed">&gt; DATA_TRANSFER_SPEED: 42.8 KB/s</div>
+                <div id="telemetry-load">&gt; STATION_LOAD: 42% | JITTER: 4ms</div>
+                <div class="text-[#00ff00] font-bold">&gt; SCAN_OUTPUT: <span id="telemetry-co2-val">12.8</span> g/hr</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="flex flex-col md:flex-row gap-6 w-full max-w-5xl justify-center items-center mb-8 relative z-10">
+    <button id="hero-cta-btn" onclick="window.location.href='/login'" class="bg-primary-container text-on-primary-container font-headline-md uppercase border-4 border-on-background py-6 px-12 neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all active:translate-x-2 active:translate-y-2 active:shadow-none">
+        START TRACING
+    </button>
+    <button class="bg-white text-on-background font-headline-md uppercase border-4 border-on-background py-4 px-12 neo-shadow hover:bg-surface-container transition-colors">
+        VIEW LIVE MAP
+    </button>
+</div>
+<div class="w-full max-w-6xl aspect-[21/9] border-4 border-on-background neo-shadow relative overflow-hidden group">
+
+<div class="absolute bottom-6 right-6 bg-on-background text-background px-4 py-2 font-label-sm z-20">
+                    REALTIME_PLANETARY_FLUX_V.2.4
+                </div>
+</div>
+</section>
+<!-- Force For Good: Features Grid -->
+<section class="bg-on-background py-24 text-background">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div>
+<h2 class="font-display text-6xl uppercase leading-none text-primary-fixed mb-4">FORCE FOR GOOD</h2>
+<p class="font-body-lg max-w-xl opacity-80">We provide the technical arsenal required to dismantle greenwashing and rebuild transparent ecosystems. No fluff. Just data.</p>
+</div>
+<div class="font-label-sm text-primary-fixed tracking-widest border-l-4 border-primary-fixed pl-6">
+                        ESTABLISHED_2024<br/>SYSTEM_READY
+                    </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+<!-- Smart Tracking -->
+<div class="bg-background text-on-background p-8 border-4 border-primary-fixed neo-shadow flex flex-col gap-6">
+<span class="material-symbols-outlined text-5xl text-primary" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<h3 class="font-headline-md uppercase">SMART TRACKING</h3>
+<p class="font-body-md">Advanced telemetry for your daily carbon output. Automated detection of high-impact transit and consumption patterns.</p>
+<div class="mt-auto pt-4 border-t-2 border-surface-variant flex justify-between items-center">
+<span class="font-label-sm font-bold">MODULE_01</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<!-- Community Goals -->
+<div class="bg-secondary-container text-on-secondary-container p-8 border-4 border-on-background neo-shadow flex flex-col gap-6">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">groups</span>
+<h3 class="font-headline-md uppercase">COMMUNITY GOALS</h3>
+<p class="font-body-md">Sync with localized squads to tackle regional emission peaks. Crowdsourced sustainability that actually moves the needle.</p>
+<div class="mt-auto pt-4 border-t-2 border-on-secondary-container flex justify-between items-center">
+<span class="font-label-sm font-bold">MODULE_02</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+<!-- Eco Rewards -->
+<div class="bg-tertiary-container text-on-tertiary-container p-8 border-4 border-on-background neo-shadow flex flex-col gap-6">
+<span class="material-symbols-outlined text-5xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<h3 class="font-headline-md uppercase">ECO REWARDS</h3>
+<p class="font-body-md">Convert validated carbon savings into real-world assets. Partnered with 50+ circular brands for verified hardware and gear.</p>
+<div class="mt-auto pt-4 border-t-2 border-on-tertiary-container flex justify-between items-center">
+<span class="font-label-sm font-bold">MODULE_03</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Choose Your Armor: Pricing -->
+<section class="py-24 container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="font-display text-7xl uppercase mb-4">CHOOSE YOUR ARMOR</h2>
+<p class="font-label-sm tracking-widest text-on-surface-variant">EQUIPMENT_TIERS_FOR_THE_ECO_WARRIOR</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+<!-- Basic Access -->
+<div class="bg-white border-4 border-on-background p-10 neo-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-lg uppercase mb-2">BASIC ACCESS</h3>
+<p class="font-label-sm text-outline">TIER_01_RECON</p>
+</div>
+<div class="font-display text-5xl">$0</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3 font-body-lg">
+<span class="material-symbols-outlined text-primary font-bold">check_circle</span> Manual Input Log
+                        </li>
+<li class="flex items-center gap-3 font-body-lg">
+<span class="material-symbols-outlined text-primary font-bold">check_circle</span> Community Leaderboard
+                        </li>
+<li class="flex items-center gap-3 font-body-lg opacity-40">
+<span class="material-symbols-outlined">cancel</span> Auto-Telemetry
+                        </li>
+<li class="flex items-center gap-3 font-body-lg opacity-40">
+<span class="material-symbols-outlined">cancel</span> Partner Discounts
+                        </li>
+</ul>
+<button class="w-full border-4 border-on-background py-4 font-headline-md uppercase neo-shadow-sm hover:bg-surface-container transition-colors">
+                        DEPLOY BASIC
+                    </button>
+</div>
+<!-- Full Arsenal -->
+<div class="bg-primary-container border-4 border-on-background p-10 neo-shadow flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
+<div class="absolute top-4 right-[-40px] bg-on-background text-background font-label-sm py-2 px-12 rotate-45 z-10">RECOMMENDED</div>
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="font-headline-lg uppercase mb-2">FULL ARSENAL</h3>
+<p class="font-label-sm text-on-primary-container">TIER_02_VANGUARD</p>
+</div>
+<div class="font-display text-5xl">$12<span class="text-xl">/MO</span></div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3 font-body-lg">
+<span class="material-symbols-outlined text-on-background font-bold">check_circle</span> Biometric Telemetry
+                        </li>
+<li class="flex items-center gap-3 font-body-lg">
+<span class="material-symbols-outlined text-on-background font-bold">check_circle</span> Advanced Analytics
+                        </li>
+<li class="flex items-center gap-3 font-body-lg">
+<span class="material-symbols-outlined text-on-background font-bold">check_circle</span> Premium Reward Access
+                        </li>
+<li class="flex items-center gap-3 font-body-lg">
+<span class="material-symbols-outlined text-on-background font-bold">check_circle</span> Hardware API Sync
+                        </li>
+</ul>
+<button class="w-full bg-on-background text-background py-4 font-headline-md uppercase shadow-[4px_4px_0px_0px_rgba(0,0,0,0.4)] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                        ACTIVATE ARSENAL
+                    </button>
+<div id="gpay-arsenal" class="mt-4 flex justify-center w-full min-h-[40px]"></div>
+</div>
+</div>
+</section>
+<!-- CTA / Signup Section -->
+<section class="container mx-auto px-6 py-24">
+<div class="bg-secondary-fixed border-4 border-on-background p-12 md:p-20 neo-shadow relative flex flex-col md:flex-row items-center gap-12 overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-2 bg-on-background opacity-10"></div>
+<div class="absolute bottom-0 left-0 w-full h-2 bg-on-background opacity-10"></div>
+<div class="flex-1 text-center md:text-left">
+<h2 class="font-display text-6xl uppercase leading-none mb-6">JOIN THE MOVEMENT</h2>
+<p class="font-body-lg text-on-secondary-fixed-variant max-w-md">No newsletters. Only critical updates and mission directives for the EcoTrace network. Verify your station now.</p>
+</div>
+<div class="flex-1 w-full max-w-md">
+<form class="flex flex-col gap-4">
+<div class="relative">
+<label class="font-label-sm uppercase mb-2 block text-on-secondary-fixed-variant">STATION_IDENTIFIER (EMAIL)</label>
+<input class="w-full border-4 border-on-background p-4 font-label-sm focus:outline-none focus:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all bg-white" placeholder="WARRIOR@ECOTRACE.NETWORK" type="email"/>
+</div>
+<button id="footer-cta-btn" onclick="window.location.href='/login'; return false;" class="bg-on-background text-secondary-fixed font-headline-md uppercase py-5 px-8 neo-shadow active:translate-x-2 active:translate-y-2 active:shadow-none transition-all" type="button">
+                            DEPLOY ACCESS
+                        </button>
+</form>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer (Mapped from JSON Footer) -->
+<footer class="w-full py-12 px-6 flex flex-col items-center gap-8 bg-on-background border-t-4 border-on-background text-background">
+<div class="flex flex-col md:flex-row justify-between w-full max-w-7xl items-center gap-8">
+<div class="flex flex-col gap-2">
+<h2 class="font-display text-4xl font-bold uppercase text-primary-fixed tracking-tighter">ECOTRACE</h2>
+<p class="font-label-sm opacity-60">PLANETARY_INTEGRITY_PROTOCOLS_V4</p>
+</div>
+<div class="flex gap-8 font-label-sm">
+<a class="text-on-primary opacity-80 hover:text-secondary-fixed transition-colors underline" href="/privacy">PRIVACY</a>
+<a class="text-on-primary opacity-80 hover:text-secondary-fixed transition-colors underline" href="/terms">TERMS</a>
+<a class="text-on-primary opacity-80 hover:text-secondary-fixed transition-colors underline" href="/services">SERVICES</a>
+<a class="text-on-primary opacity-80 hover:text-secondary-fixed transition-colors underline" href="/support">SUPPORT</a>
+</div>
+<div class="flex gap-4">
+<div class="w-12 h-12 border-2 border-primary-fixed flex items-center justify-center hover:bg-primary-fixed hover:text-on-background transition-all cursor-pointer">
+<span class="material-symbols-outlined">share</span>
+</div>
+<div class="w-12 h-12 border-2 border-primary-fixed flex items-center justify-center hover:bg-primary-fixed hover:text-on-background transition-all cursor-pointer">
+<span class="material-symbols-outlined">public</span>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 w-full max-w-7xl text-center">
+<p class="font-label-sm text-on-primary opacity-60">©2024 ECOTRACE SYSTEMS. NO GREENWASHING.</p>
+</div>
+</footer>
+<script async src="https://pay.google.com/gp/p/js/pay.js" onload="initGPayLanding()"></script>
+<script>
+        function initGPayLanding() {
+            if (typeof initGooglePay === 'function') {
+                initGooglePay("gpay-arsenal", "12.00", "Full Arsenal Subscription");
+            }
+        }
+
+        let heroDiet = "omnivore";
+
+        function setHeroDiet(diet, btn) {
+            heroDiet = diet;
+            const container = document.getElementById('hero-diet-group');
+            if (container) {
+                container.querySelectorAll('button').forEach(b => {
+                    b.classList.remove('bg-primary-container', 'active-neo-shadow');
+                    b.classList.add('bg-white');
+                });
+            }
+            btn.classList.remove('bg-white');
+            btn.classList.add('bg-primary-container', 'active-neo-shadow');
+            calculateHeroFootprint();
+        }
+
+        function calculateHeroFootprint() {
+            const slider = document.getElementById('hero-commute-slider');
+            const label = document.getElementById('commute-label');
+            const resultVal = document.getElementById('hero-footprint-val');
+            
+            if (!slider || !label || !resultVal) return;
+            
+            const commuteKm = parseFloat(slider.value) || 0;
+            label.textContent = `${commuteKm} KM`;
+
+            // Calculate transport CO2: commuteKm * 52 weeks * 0.18 kg CO2/km
+            const transportCo2 = (commuteKm * 52 * 0.18) / 1000;
+
+            // Diet CO2 offsets
+            const dietOffsets = {
+                vegan: 1.5,
+                vegetarian: 1.8,
+                omnivore: 2.5,
+                meat_heavy: 3.4
+            };
+            const dietCo2 = dietOffsets[heroDiet] || 2.5;
+
+            const total = transportCo2 + dietCo2;
+            resultVal.textContent = total.toFixed(1);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const counter = document.getElementById('impact-counter');
+            let count = 1248302;
+            
+            setInterval(() => {
+                count += Math.floor(Math.random() * 5);
+                if (counter) counter.textContent = count.toLocaleString();
+            }, 3000);
+
+            // Initial calculation
+            calculateHeroFootprint();
+
+            // Telemetry Background Scanning loop simulation
+            const speedLine = document.getElementById('telemetry-speed');
+            const loadLine = document.getElementById('telemetry-load');
+            const co2Line = document.getElementById('telemetry-co2-val');
+
+            setInterval(() => {
+                if (speedLine) {
+                    const speed = (Math.random() * 60 + 20).toFixed(1);
+                    speedLine.textContent = `> DATA_TRANSFER_SPEED: ${speed} KB/s`;
+                }
+                if (loadLine) {
+                    const load = Math.floor(Math.random() * 30 + 30);
+                    const jitter = Math.floor(Math.random() * 8 + 2);
+                    loadLine.textContent = `> STATION_LOAD: ${load}% | JITTER: ${jitter}ms`;
+                }
+                if (co2Line) {
+                    const val = (Math.random() * 4 + 11).toFixed(1);
+                    co2Line.textContent = val;
+                }
+            }, 1500);
+        });
+    </script>
+</body></html>

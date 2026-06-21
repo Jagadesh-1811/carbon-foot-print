@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrace | Rewards Marketplace</title>
+<!-- Google Fonts: Space Grotesk & Public Sans -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Public+Sans:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff9e8",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f6f1de",
+                    "surface-container": "#f3eedc",
+                    "on-primary-fixed-variant": "#4f4800",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#25dcdb",
+                    "primary-fixed-dim": "#dbc90a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#d3c87e",
+                    "primary-fixed": "#f9e534",
+                    "primary-container": "#ffeb3b",
+                    "outline-variant": "#cdc7ac",
+                    "on-secondary-fixed": "#201c00",
+                    "on-error": "#ffffff",
+                    "surface": "#fff9e8",
+                    "tertiary-fixed": "#55f9f8",
+                    "surface-variant": "#e8e2d1",
+                    "on-primary-container": "#746900",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#002020",
+                    "surface-container-low": "#f9f3e1",
+                    "inverse-primary": "#dbc90a",
+                    "on-background": "#1d1c11",
+                    "on-tertiary-fixed-variant": "#00504f",
+                    "on-primary-fixed": "#201c00",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e8e2d1",
+                    "surface-tint": "#695f00",
+                    "inverse-surface": "#333125",
+                    "surface-dim": "#dfdac8",
+                    "tertiary-container": "#5dfffe",
+                    "on-surface-variant": "#4a4733",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#7c7760",
+                    "on-tertiary-container": "#007474",
+                    "on-secondary-fixed-variant": "#4e4809",
+                    "tertiary": "#006a69",
+                    "primary": "#695f00",
+                    "background": "#fff9e8",
+                    "surface-container-high": "#eee8d6",
+                    "secondary": "#675f21",
+                    "secondary-container": "#ede194",
+                    "secondary-fixed": "#f0e497",
+                    "on-surface": "#1d1c11",
+                    "on-secondary-container": "#6b6424"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "display": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-sm {
+            box-shadow: 3px 3px 0px 0px rgba(0,0,0,1);
+        }
+        .active-neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #fff9e8;
+        }
+    </style>
+<script src="/static/js/api.js"></script></head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar Shell -->
+<nav class="flex flex-col fixed left-0 top-0 h-full p-4 gap-4 bg-surface dark:bg-background h-screen w-64 border-r-4 border-on-surface shadow-[4px_0px_0px_0px_rgba(0,0,0,1)] z-[60]">
+<div class="mb-8 p-2">
+<h1 class="text-2xl font-black text-on-surface dark:text-on-background italic font-headline uppercase tracking-tight">EcoTrace</h1>
+<p class="text-xs font-bold uppercase text-on-surface-variant">User Dashboard</p>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Nav Item: Overview -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<!-- Nav Item: Goals -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span>Goals</span>
+</a>
+<!-- Nav Item: Calculator -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span>Calculator</span>
+</a>
+<!-- Nav Item: Rewards (ACTIVE) -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight bg-primary-container text-on-primary-container border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-[-2px] translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<span>Rewards</span>
+</a>
+<!-- Nav Item: Settings -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-red-500 hover:bg-red-100 hover:text-red-700 transition-all duration-75 group" href="#" onclick="logout(); return false;">
+<span class="material-symbols-outlined text-red-500">logout</span>
+<span class="font-headline font-bold uppercase tracking-tight text-red-500">Logout</span>
+</a>
+</div>
+<div class="mt-auto p-4 border-4 border-on-surface bg-surface-container-highest neo-shadow-sm flex items-center gap-3">
+<div class="w-10 h-10 border-2 border-black bg-primary">
+<img class="w-full h-full object-cover" data-alt="A stylized minimalist avatar portrait of a person with short hair, wearing thick-rimmed glasses and a yellow sweater, set against a stark, high-contrast black and yellow neo-brutalist background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTKipwUhnqDPmF0sg8cjq3Pt1GuNLxIewKESrdlF0otVZ-Upx1c28DDSCht2dbkhgQl-1KVFLOEIG1EUV_swxFj89a9VGDYGpkbwTsQVoI2lYdff0e6YaW8e5WNaK7BbyninFsx8DT9eGK-BHs8aeu_R-RPZHsTm7coJm8kDUSwdj035iHYw4-CSDXdnpWodVnQdWQWyy0kIshYWUltWhnTR-1Y85XO8FFAWQp1cMPE-OgaqZtD1Re_dWYBGukDTBN-0vwVNsZtGJO"/>
+</div>
+<div>
+<p class="text-sm font-black uppercase">Alex Rivera</p>
+<p class="text-[10px] font-bold opacity-70">Eco Enthusiast</p>
+</div>
+</div>
+</nav>
+<!-- TopAppBar Shell -->
+<header class="flex justify-between items-center px-8 py-4 sticky top-0 z-50 ml-64 bg-surface dark:bg-background w-full border-b-4 border-on-surface shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-8">
+<h2 class="text-3xl font-black uppercase text-on-surface dark:text-on-background font-headline">Rewards</h2>
+<div class="relative group">
+<input class="bg-surface border-4 border-on-surface px-4 py-2 w-64 focus:outline-none focus:ring-4 focus:ring-primary-container font-bold italic transition-all" placeholder="Search marketplace..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface">search</span>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative hover:text-primary transition-colors focus:ring-4 focus:ring-primary-container p-1">
+<span class="material-symbols-outlined text-3xl">notifications</span>
+<span class="absolute top-0 right-0 w-3 h-3 bg-error border-2 border-black"></span>
+</button>
+<button class="hover:text-primary transition-colors focus:ring-4 focus:ring-primary-container">
+<span class="material-symbols-outlined text-3xl">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Hero: Balance Card -->
+<section class="mb-12">
+<div class="bg-primary-container border-4 border-on-surface p-10 neo-shadow relative overflow-hidden flex flex-col md:flex-row justify-between items-center gap-8">
+<!-- Abstract Background Shader -->
+<div class="absolute inset-0 opacity-10 pointer-events-none">
+
+</div>
+<div class="relative z-10">
+<h3 class="text-xl font-black uppercase mb-2 tracking-widest">Your $TRACE Balance</h3>
+<div class="flex items-baseline gap-2">
+<span class="text-8xl font-black font-display tracking-tighter" id="trace-balance">4850</span>
+<span class="text-3xl font-bold italic">$TRACE</span>
+</div>
+<p class="mt-4 font-bold bg-white/40 inline-block px-3 py-1 border-2 border-black">Equivalent to 4.2 Tons of CO2 Offset</p>
+</div>
+<div class="relative z-10 flex flex-col sm:flex-row items-center gap-4">
+<button class="bg-on-surface text-surface px-8 py-4 font-black uppercase text-xl border-4 border-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all neo-shadow">
+                        Earn More
+                    </button>
+<div id="gpay-rewards" class="min-h-[40px] flex items-center justify-center"></div>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 font-black uppercase text-xl border-4 border-on-surface hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all neo-shadow">
+                        Redeem History
+                    </button>
+</div>
+</div>
+</section>
+<!-- Category Filter -->
+<section class="flex flex-wrap gap-4 mb-10">
+<button class="px-6 py-2 border-4 border-on-surface bg-on-surface text-surface font-black uppercase">All Rewards</button>
+<button class="px-6 py-2 border-4 border-on-surface bg-surface font-black uppercase hover:bg-primary-container transition-colors">Sustainable Brands</button>
+<button class="px-6 py-2 border-4 border-on-surface bg-surface font-black uppercase hover:bg-tertiary-fixed transition-colors">Environment Projects</button>
+<button class="px-6 py-2 border-4 border-on-surface bg-surface font-black uppercase hover:bg-secondary-container transition-colors">Community Credits</button>
+</section>
+<!-- Marketplace Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+<!-- Reward 1: Large Featured -->
+<div class="col-span-1 md:col-span-2 row-span-2 border-4 border-on-surface bg-tertiary-fixed neo-shadow p-8 flex flex-col group">
+<div class="mb-6 h-64 border-4 border-black bg-white overflow-hidden relative">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A lush, vibrant forest of young saplings being planted by robotic drones in a high-tech reforestation project. The style is a vivid digital illustration with strong contrast, deep forest greens, and bright neon blue technology accents, framed within a neo-brutalist heavy black border." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWw1XMTbmgGfbIrBYOe0RCxHW1Q-KNYDBxwRiD-6ia-hzHy1yPUHr4Ebncc4ZzlxEiyAvVBXmnAIoRGii8PL5i73Bh_03PCanqNNVkamngJZYWBkbHM4xitiXJCPPAm3HDZvgGVfrKXWLHKJvRA5eNoltllS2H6jwWZ_POET6uWzegtaUtGu35M4_HLZfk5DvsgrwHp9w9iEatVVrBbYDH7BjmFxo2VKBPjgb6iwd1v0lhBoOOAk9JLd3H3Wa_g0QN2zp6PE-qNNY7"/>
+<div class="absolute top-4 right-4 bg-error text-white px-4 py-2 font-black border-2 border-black uppercase">Most Popular</div>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start mb-4">
+<h4 class="text-4xl font-black uppercase leading-none">Amazonas <br/>Reforestation</h4>
+<div class="text-right">
+<span class="block text-2xl font-black">1,200</span>
+<span class="text-xs font-bold uppercase">$TRACE</span>
+</div>
+</div>
+<p class="font-bold text-lg leading-snug mb-8 max-w-md">Fund the planting of 10 native trees in the Amazon basin. Receive a digital certificate and GPS coordinates of your grove.</p>
+</div>
+<button onclick="redeemReward(1200, 'Amazonas Reforestation')" class="w-full bg-on-surface text-surface font-black text-2xl py-4 border-4 border-on-surface hover:bg-surface-container hover:text-on-surface transition-colors active:translate-y-1">REDEEM NOW</button>
+</div>
+<!-- Reward 2: Sustainable Discount -->
+<div class="border-4 border-on-surface bg-secondary-container neo-shadow p-6 flex flex-col">
+<div class="h-40 border-4 border-black bg-white mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A minimalist photograph of a high-quality, reusable stainless steel water bottle in a striking matte yellow color, placed on a black granite surface with sharp geometric shadows. The lighting is harsh and direct, emphasizing the brutalist aesthetic of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYeqdVF1kUGq62yzuyFSrOq7tjWdyiMydmp4ja3lGRJXXKplDd32L9FG0ifXWx5HYNhQK9vqa-AU-JdvSq6M0qaH5BkcrjBxuLqVOv0X5v_8odrkWHmtIgvHp1u1FGEntBNKRtDzYhMm0OopfdR1mYvUTkXPeBgNtOfCR0me_guUQngpIhuDbej9X8XwEbtzWHt4wWuMeBWvEXV9de_jvv5tA7ipR90jnkZIcmjiBKGaabtXEjKAZp5N9fb62zWPu77GjluKgIFbaA"/>
+</div>
+<h4 class="text-2xl font-black uppercase mb-2">25% Off Hydro-Pals</h4>
+<p class="font-bold text-sm mb-6 opacity-80">Valid on all eco-friendly insulated flasks and bamboo lids.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-black text-xl">450 $TRACE</span>
+<button onclick="redeemReward(450, '25% Off Hydro-Pals')" class="bg-on-surface p-2 text-surface border-2 border-black hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Reward 3: Carbon Offset -->
+<div class="border-4 border-on-surface bg-surface-container-highest neo-shadow p-6 flex flex-col">
+<div class="h-40 border-4 border-black bg-white mb-4 overflow-hidden relative">
+
+</div>
+<h4 class="text-2xl font-black uppercase mb-2">1.5 Ton Carbon Credit</h4>
+<p class="font-bold text-sm mb-6 opacity-80">Certified Gold Standard carbon offset for personal aviation.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-black text-xl">2,100 $TRACE</span>
+<button onclick="redeemReward(2100, '1.5 Ton Carbon Credit')" class="bg-on-surface p-2 text-surface border-2 border-black hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Reward 4: Pink Highlight -->
+<div class="border-4 border-on-surface bg-[#FFC1CC] neo-shadow p-6 flex flex-col">
+<div class="h-40 border-4 border-black bg-white mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Close-up of a sustainably sourced hemp tote bag with a bold, black graphic print of a globe and the words 'NO PLANET B'. The bag is shown in high-contrast light, with the texture of the fabric clearly visible, set against a vibrant pink background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkYHwhUaKG_6oMDiAwdEvD1Nlrmk0giES4SR2ZTr6mjZVQX6GC5uymSRB0hVf6AAT0qU4v9bjsLeKhZyb6lPsx0M0mrdAYuLwPi7Eswk6jMRZjL7igpTkcJmAu4d0UU6MKVTmGNcsCDV-xR3EW_ZT6zpHkFTsKNg5ij49rsbd1yIgWT5tWDvL-haBHqQeIyaajxg0FEJwlUiWvx5g8pP3EwEan0LZRWTDRUN3XhMlmAvyDBi-D033aGolC6i54tCAJ6ZpnW1J2QPaq"/>
+</div>
+<h4 class="text-2xl font-black uppercase mb-2">Limitless Tote</h4>
+<p class="font-bold text-sm mb-6 opacity-80">Limited edition 100% organic hemp bag with custom art.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-black text-xl">800 $TRACE</span>
+<button onclick="redeemReward(800, 'Limitless Tote')" class="bg-on-surface p-2 text-surface border-2 border-black hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Reward 5: Blue Highlight -->
+<div class="border-4 border-on-surface bg-tertiary-container neo-shadow p-6 flex flex-col">
+<div class="h-40 border-4 border-black bg-white mb-4 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="An artistic representation of ocean plastic being recycled into clean, geometric tiles. The color palette features electric blues and deep cyans, with a high-contrast industrial look that matches the neo-brutalist theme of the interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbKjF70nsi1nR5AThs1eTDvEq3hL5BBMvu_TiNn9pYMPWThUUsfap-U_2ucLRa0VR_6bSuuzBnuKPSYsHxl3BB9OZwZlgAX-UD19QNtIPvN0RO-ZpiZXQ4RJi3jSiBv8lS1EjNUuvE0R-ig_cA8P0dc2Wt6a4yslMpveAi0cgvgXhL6PbkKaYVxuyt27OywEnvwIdvetn6Ppi4Wj4D_9sy6tn4v3m04hkHyF93SKNubtJCBVPXvdnx6bXmoyz6i3XsKLkCwIeY88iI"/>
+</div>
+<h4 class="text-2xl font-black uppercase mb-2">Ocean Clean Up</h4>
+<p class="font-bold text-sm mb-6 opacity-80">Remove 5kg of plastic from the Pacific Ocean Gyre.</p>
+<div class="mt-auto flex justify-between items-center">
+<span class="font-black text-xl">1,500 $TRACE</span>
+<button onclick="redeemReward(1500, 'Ocean Clean Up')" class="bg-on-surface p-2 text-surface border-2 border-black hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="border-4 border-on-surface p-8 bg-surface-container-high neo-shadow">
+<h5 class="text-2xl font-black uppercase mb-6 flex items-center gap-3">
+<span class="material-symbols-outlined text-4xl">local_fire_department</span>
+                    Trending Missions
+                </h5>
+<ul class="space-y-4">
+<li class="flex items-center justify-between p-4 border-2 border-black bg-white/50">
+<span class="font-bold">Weekly Commute Challenge</span>
+<span class="font-black text-primary">+200 $TRACE</span>
+</li>
+<li class="flex items-center justify-between p-4 border-2 border-black bg-white/50">
+<span class="font-bold">Plastic Free 30-Day streak</span>
+<span class="font-black text-primary">+500 $TRACE</span>
+</li>
+<li class="flex items-center justify-between p-4 border-2 border-black bg-white/50">
+<span class="font-bold">Refer an Eco-Partner</span>
+<span class="font-black text-primary">+1,000 $TRACE</span>
+</li>
+</ul>
+</div>
+<div class="border-4 border-on-surface p-8 bg-primary-container/20 neo-shadow flex flex-col justify-center text-center">
+<h5 class="text-3xl font-black uppercase mb-4">Redeem for Impact</h5>
+<p class="text-lg font-bold mb-8">Join 12,403 other users who have redeemed rewards this month and collectively removed 400 tons of carbon.</p>
+<div class="flex justify-center gap-2">
+<div class="w-12 h-12 rounded-full border-4 border-black bg-primary flex items-center justify-center font-black">J</div>
+<div class="w-12 h-12 rounded-full border-4 border-black bg-secondary flex items-center justify-center font-black">M</div>
+<div class="w-12 h-12 rounded-full border-4 border-black bg-tertiary flex items-center justify-center font-black text-white">S</div>
+<div class="w-12 h-12 rounded-full border-4 border-black bg-on-surface flex items-center justify-center font-black text-white">+12k</div>
+</div>
+</div>
+</section>
+</main>
+<!-- FAB for quick earn -->
+<button class="fixed bottom-10 right-10 w-20 h-20 bg-primary-container border-4 border-black rounded-full neo-shadow flex items-center justify-center hover:scale-110 active:scale-95 transition-all group z-[100]">
+<span class="material-symbols-outlined text-4xl group-hover:rotate-12 transition-transform">add_circle</span>
+</button>
+<script>
+        // Micro-interactions
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                el.style.transform = 'translate(2px, 2px)';
+                if (el.classList.contains('neo-shadow')) {
+                    el.style.boxShadow = 'none';
+                }
+            });
+            el.addEventListener('mouseup', () => {
+                el.style.transform = '';
+                if (el.classList.contains('neo-shadow')) {
+                    el.style.boxShadow = '6px 6px 0px 0px rgba(0,0,0,1)';
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const userId = getUserId();
+            if (!userId) return;
+            
+            try {
+                const response = await fetch(`${API_BASE}/users/profile/${userId}`);
+                if (response.ok) {
+                    const user = await response.json();
+                    const balanceEl = document.getElementById('trace-balance');
+                    if (balanceEl) {
+                        balanceEl.innerText = user.trace_balance.toLocaleString();
+                    }
+                }
+            } catch (err) {
+                console.error("Failed to load trace balance:", err);
+            }
+        });
+
+        async function redeemReward(cost, name) {
+            const userId = getUserId();
+            if (!userId) {
+                alert("Please log in to redeem rewards.");
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/users/profile/${userId}/redeem`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cost: cost, rewardName: name })
+                });
+                
+                const data = await response.json();
+                if (response.ok && data.status === "success") {
+                    const balanceEl = document.getElementById('trace-balance');
+                    if (balanceEl) {
+                        balanceEl.innerText = data.new_balance.toLocaleString();
+                    }
+                    alert(`Successfully redeemed: ${name}!`);
+                } else {
+                    alert(data.detail || data.message || "Failed to redeem reward.");
+                }
+            } catch (err) {
+                console.error("Error during redemption:", err);
+                alert("Redemption failed. Please try again.");
+            }
+        }
+
+        function initGPayRewards() {
+            if (typeof initGooglePay === 'function') {
+                initGooglePay("gpay-rewards", "5.00", "Buy 1,000 $TRACE Points", async (paymentData) => {
+                    const userId = getUserId();
+                    if (!userId) return;
+                    try {
+                        const response = await fetch(`${API_BASE}/users/profile/${userId}/add_trace`, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({ amount: 1000 })
+                        });
+                        const data = await response.json();
+                        if (response.ok && data.status === "success") {
+                            const balanceEl = document.getElementById('trace-balance');
+                            if (balanceEl) {
+                                balanceEl.innerText = data.new_balance.toLocaleString();
+                            }
+                            alert("Successfully purchased 1,000 $TRACE points! ✅");
+                        } else {
+                            alert("Failed to update balance.");
+                        }
+                    } catch (err) {
+                        console.error("Error crediting balance:", err);
+                    }
+                });
+            }
+        }
+    </script>
+    <script async src="https://pay.google.com/gp/p/js/pay.js" onload="initGPayRewards()"></script>
+</body></html>

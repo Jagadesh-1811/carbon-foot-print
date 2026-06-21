@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>EcoTrace | Terms of Service</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Public+Sans:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#695f00",
+                        "primary-container": "#ffeb3b",
+                        "surface": "#fff9e8",
+                        "background": "#fff9e8",
+                        "on-background": "#1d1c11",
+                        "on-surface": "#1d1c11",
+                        "surface-container": "#f3eedc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Space Grotesk"]
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .neo-shadow {
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-lg {
+            box-shadow: 10px 10px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-border {
+            border: 4px solid #000000;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #fff9e8;
+        }
+    </style>
+    <script src="/static/js/api.js"></script>
+</head>
+<body class="bg-background text-on-surface min-h-screen flex flex-col">
+    <!-- Top Nav -->
+    <header class="sticky top-0 z-50 bg-surface w-full border-b-4 border-black shadow-[0px_4px_0px_0px_rgba(0,0,0,1)] px-8 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 bg-primary-container border-2 border-black flex items-center justify-center">
+                <span class="material-symbols-outlined text-black font-bold">eco</span>
+            </div>
+            <span class="text-2xl font-black italic uppercase tracking-tight leading-none cursor-pointer" onclick="window.location.href='/'">EcoTrace</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <button onclick="window.history.back()" class="px-4 py-2 bg-white neo-border neo-shadow font-black uppercase text-xs hover:bg-primary-container transition-colors active:translate-x-1 active:translate-y-1 active:shadow-none">
+                Go Back
+            </button>
+            <button id="header-login-btn" onclick="window.location.href='/login'" class="px-4 py-2 bg-primary-container neo-border neo-shadow font-black uppercase text-xs hover:bg-white transition-colors active:translate-x-1 active:translate-y-1 active:shadow-none">
+                Login
+            </button>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-4xl mx-auto px-6 py-12">
+        <!-- Page Title Banner -->
+        <div class="bg-primary-container p-8 neo-border neo-shadow-lg mb-12">
+            <h1 class="text-5xl font-black uppercase italic tracking-tighter leading-none mb-4">Terms of Service</h1>
+            <p class="text-lg font-bold opacity-80 uppercase tracking-wider">Planetary Integrity Protocols v4.2 &mdash; Last Updated June 2026</p>
+        </div>
+
+        <!-- Terms Content -->
+        <div class="space-y-8">
+            <section class="bg-white p-8 neo-border neo-shadow">
+                <h2 class="text-2xl font-black uppercase italic mb-4 flex items-center gap-2">
+                    <span class="bg-black text-white px-2 py-0.5 text-lg">01</span> User Agreement &amp; Account Responsibility
+                </h2>
+                <p class="font-bold text-on-surface-variant leading-relaxed">
+                    By accessing or deploying EcoTrace systems, you agree to comply with our environmental monitoring bylaws. You are responsible for protecting your account credentials, maintaining your station identification telemetry, and keeping all recorded metrics accurate.
+                </p>
+            </section>
+
+            <section class="bg-white p-8 neo-border neo-shadow">
+                <h2 class="text-2xl font-black uppercase italic mb-4 flex items-center gap-2">
+                    <span class="bg-black text-white px-2 py-0.5 text-lg">02</span> Carbon Telemetry Disclaimer
+                </h2>
+                <p class="font-bold text-on-surface-variant leading-relaxed">
+                    All calculations of carbon footprints, offsets, and reductions provided by EcoTrace calculators are estimates based on standard international conversion factors. They do not constitute official regulatory compliance evidence or legal audits.
+                </p>
+            </section>
+
+            <section class="bg-white p-8 neo-border neo-shadow">
+                <h2 class="text-2xl font-black uppercase italic mb-4 flex items-center gap-2">
+                    <span class="bg-black text-white px-2 py-0.5 text-lg">03</span> $TRACE Reward Token Protocol
+                </h2>
+                <p class="font-bold text-on-surface-variant leading-relaxed">
+                    $TRACE rewards have no external fiat value and cannot be exchanged for currency. They are strictly digital tokens representing verified environmental impact. EcoTrace reserves the right to audit, revert, or freeze balances if user telemetry shows evidence of inaccurate logging or manipulation.
+                </p>
+            </section>
+
+            <section class="bg-white p-8 neo-border neo-shadow">
+                <h2 class="text-2xl font-black uppercase italic mb-4 flex items-center gap-2">
+                    <span class="bg-black text-white px-2 py-0.5 text-lg">04</span> Data Privacy &amp; Integrity Pledges
+                </h2>
+                <p class="font-bold text-on-surface-variant leading-relaxed">
+                    Your location telemetry, utility consumption reports, and commuting metrics are strictly processed to estimate carbon output. We do not sell user-identifiable tracking data to third-party advertisers. All telemetry data is stored using protected database configurations.
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full py-8 border-t-4 border-black bg-black text-white text-center mt-12">
+        <p class="text-sm font-black tracking-widest uppercase">&copy; 2026 EcoTrace Systems. No Greenwashing.</p>
+    </footer>
+</body>
+</html>

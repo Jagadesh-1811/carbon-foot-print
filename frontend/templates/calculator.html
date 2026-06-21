@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrace | Calculator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Public+Sans:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff9e8",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f6f1de",
+                    "surface-container": "#f3eedc",
+                    "on-primary-fixed-variant": "#4f4800",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#25dcdb",
+                    "primary-fixed-dim": "#dbc90a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#d3c87e",
+                    "primary-fixed": "#f9e534",
+                    "primary-container": "#ffeb3b",
+                    "outline-variant": "#cdc7ac",
+                    "on-secondary-fixed": "#201c00",
+                    "on-error": "#ffffff",
+                    "surface": "#fff9e8",
+                    "tertiary-fixed": "#55f9f8",
+                    "surface-variant": "#e8e2d1",
+                    "on-primary-container": "#746900",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#002020",
+                    "surface-container-low": "#f9f3e1",
+                    "inverse-primary": "#dbc90a",
+                    "on-background": "#1d1c11",
+                    "on-tertiary-fixed-variant": "#00504f",
+                    "on-primary-fixed": "#201c00",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e8e2d1",
+                    "surface-tint": "#695f00",
+                    "inverse-surface": "#333125",
+                    "surface-dim": "#dfdac8",
+                    "tertiary-container": "#5dfffe",
+                    "on-surface-variant": "#4a4733",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#7c7760",
+                    "on-tertiary-container": "#007474",
+                    "on-secondary-fixed-variant": "#4e4809",
+                    "tertiary": "#006a69",
+                    "primary": "#695f00",
+                    "background": "#fff9e8",
+                    "surface-container-high": "#eee8d6",
+                    "secondary": "#675f21",
+                    "secondary-container": "#ede194",
+                    "secondary-fixed": "#f0e497",
+                    "on-surface": "#1d1c11",
+                    "on-secondary-container": "#6b6424"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "display": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-lg {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-active {
+            box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+            transform: translate(4px, 4px);
+        }
+        input:focus {
+            outline: none;
+            box-shadow: 6px 6px 0px 0px rgba(0,0,0,1);
+            transform: translate(-2px, -2px);
+        }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="/static/js/api.js"></script></head>
+<body class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+<!-- SIDE BAR -->
+<nav class="flex flex-col fixed left-0 top-0 h-full p-4 gap-4 bg-surface dark:bg-background h-screen w-64 border-r-4 border-on-surface shadow-[4px_0px_0px_0px_rgba(0,0,0,1)] z-[60]">
+<div class="mb-8 p-2">
+<span class="text-2xl font-black text-on-surface italic uppercase tracking-tight font-headline">EcoTrace</span>
+<p class="text-xs font-bold text-on-surface-variant uppercase">User Dashboard</p>
+</div>
+<div class="flex flex-col gap-3">
+<!-- Overview -->
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container transition-all duration-75 group active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-headline font-bold uppercase tracking-tight">Overview</span>
+</a>
+<!-- Goals -->
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container transition-all duration-75 group active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="font-headline font-bold uppercase tracking-tight">Goals</span>
+</a>
+<!-- Calculator (ACTIVE) -->
+<a class="flex items-center gap-3 p-3 bg-primary-container text-on-primary-container border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-[-2px] translate-y-[-2px] transition-all duration-75 group" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span class="font-headline font-bold uppercase tracking-tight">Calculator</span>
+</a>
+<!-- Rewards -->
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container transition-all duration-75 group active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span class="font-headline font-bold uppercase tracking-tight">Rewards</span>
+</a>
+<!-- Settings -->
+<a class="flex items-center gap-3 p-3 text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container transition-all duration-75 group active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-headline font-bold uppercase tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-red-500 hover:bg-red-100 hover:text-red-700 transition-all duration-75 group" href="#" onclick="logout(); return false;">
+<span class="material-symbols-outlined text-red-500">logout</span>
+<span class="font-headline font-bold uppercase tracking-tight text-red-500">Logout</span>
+</a>
+</div>
+<div class="mt-auto p-3 border-4 border-on-surface bg-surface-container-lowest neo-shadow flex items-center gap-3">
+<div class="w-10 h-10 border-2 border-on-surface bg-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A portrait of a person with a friendly expression, styled as a flat neo-brutalist illustration with bold black outlines and a limited palette of primary yellow and soft beige. The lighting is direct and flat, emphasizing sharp graphic shapes. The background is a solid, clean off-white." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuMr5CmBRj9f-hGfMzCTxl3HoCIpsB1xVJ35Nsb1ktU0hz7DRF8Cl4BmWlBi76usZUdkkoMVfJ5Pc_dbD_u4akQXxTUWRMjouZPieEQq_AZAJGBhSpQVB9ec8z7jY-7P5ATmP3--hGiSmI3QHEKFZHal7SYOXgFwqFTC7qSKqePrpyqeRmgv61ESqQ6-QzvqNE85JAGg013E5LqR9G4L9h-G9ht3slEU_kkbAo1kBRPhkYwNqnYudBDoXDFoQ6iylRSS2lfnwYKDbh"/>
+</div>
+<div class="flex flex-col">
+<span class="text-xs font-black uppercase">Alex Rivera</span>
+<span class="text-[10px] font-bold text-on-surface-variant">LVL 24 Eco-Warrior</span>
+</div>
+</div>
+</nav>
+<!-- TOP APP BAR -->
+<header class="flex justify-between items-center px-8 py-4 sticky top-0 z-50 ml-64 bg-surface dark:bg-background w-full border-b-4 border-on-surface shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-8">
+<div class="flex items-center bg-surface-container-lowest border-4 border-on-surface p-1 px-3 neo-shadow">
+<span class="material-symbols-outlined text-on-surface-variant mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 font-bold uppercase text-sm w-48" placeholder="Search metrics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface text-3xl hover:text-primary transition-colors focus:ring-4 focus:ring-primary-container">notifications</button>
+<button class="material-symbols-outlined text-on-surface text-3xl hover:text-primary transition-colors focus:ring-4 focus:ring-primary-container">account_circle</button>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="ml-64 p-8 min-h-screen">
+<div class="max-w-6xl mx-auto">
+<!-- Hero Header -->
+<section class="mb-12 flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h1 class="text-6xl md:text-8xl font-black uppercase italic leading-none mb-4">Carbon<br/>Calculator</h1>
+<p class="text-xl font-bold bg-primary-container inline-block px-4 py-1 border-2 border-on-surface neo-shadow">QUANTIFY YOUR DAILY IMPACT ON THE BIOSPHERE.</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-black uppercase mb-1">Current Session</p>
+<p class="text-2xl font-black bg-surface-container-highest px-4 py-2 border-4 border-on-surface neo-shadow">12.04.2024</p>
+</div>
+</section>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+<!-- Calculation Flow (Bento style steps) -->
+<div class="lg:col-span-8 space-y-8">
+<!-- Progress Bar -->
+<div class="w-full border-4 border-on-surface bg-surface-container-lowest h-10 neo-shadow relative overflow-hidden">
+<div class="absolute left-0 top-0 h-full bg-primary-fixed border-r-4 border-on-surface transition-all duration-500" id="progress-bar" style="width: 25%"></div>
+<div class="absolute inset-0 flex items-center justify-center font-black uppercase text-sm z-10">Step 1: Transportation</div>
+</div>
+<!-- Step 1: Transport -->
+<div class="bg-surface-bright border-4 border-on-surface p-8 neo-shadow-lg transition-all" id="step-transport">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-5xl p-2 bg-on-surface text-surface border-2 border-on-surface">commute</span>
+<h2 class="text-4xl font-black uppercase">Transport</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="space-y-4">
+<label class="block text-lg font-black uppercase">Weekly Car Mileage (km)</label>
+<input class="w-full text-4xl font-black p-4 border-4 border-on-surface bg-white neo-shadow focus:translate-x-[-4px] focus:translate-y-[-4px] transition-transform" id="input-car" placeholder="0" type="number"/>
+</div>
+<div class="space-y-4">
+<label class="block text-lg font-black uppercase">Public Transit Hours</label>
+<input class="w-full text-4xl font-black p-4 border-4 border-on-surface bg-white neo-shadow focus:translate-x-[-4px] focus:translate-y-[-4px] transition-transform" id="input-transit" placeholder="0" type="number"/>
+</div>
+</div>
+<div class="mt-12 flex justify-between">
+<button class="px-8 py-4 border-4 border-on-surface bg-surface-container text-on-surface font-black uppercase neo-shadow opacity-50 cursor-not-allowed">Back</button>
+<button class="px-12 py-4 border-4 border-on-surface bg-primary-container text-on-surface font-black uppercase neo-shadow hover:neo-shadow-active transition-all active:translate-x-1 active:translate-y-1" onclick="nextStep(2)">Next Step</button>
+</div>
+</div>
+<!-- Step 2: Diet (Hidden initially) -->
+<div class="bg-tertiary-container border-4 border-on-surface p-8 neo-shadow-lg hidden" id="step-diet">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-5xl p-2 bg-on-surface text-surface border-2 border-on-surface">restaurant</span>
+<h2 class="text-4xl font-black uppercase text-on-tertiary-container">Diet &amp; Food</h2>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<p class="text-xl font-black uppercase mb-4">How often do you consume meat products?</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<button type="button" onclick="selectDiet('meat_heavy', this)" class="p-4 border-4 border-on-surface bg-white font-black uppercase neo-shadow hover:bg-primary-fixed transition-colors">Daily</button>
+<button type="button" onclick="selectDiet('omnivore', this)" class="p-4 border-4 border-on-surface bg-primary-fixed font-black uppercase neo-shadow-active">Often</button>
+<button type="button" onclick="selectDiet('vegetarian', this)" class="p-4 border-4 border-on-surface bg-white font-black uppercase neo-shadow hover:bg-primary-fixed transition-colors">Rarely</button>
+<button type="button" onclick="selectDiet('vegan', this)" class="p-4 border-4 border-on-surface bg-white font-black uppercase neo-shadow hover:bg-primary-fixed transition-colors">Vegan</button>
+</div>
+</div>
+<div class="mt-12 flex justify-between">
+<button class="px-8 py-4 border-4 border-on-surface bg-surface-container text-on-surface font-black uppercase neo-shadow hover:neo-shadow-active transition-all" onclick="nextStep(1)">Back</button>
+<button class="px-12 py-4 border-4 border-on-surface bg-primary-container text-on-surface font-black uppercase neo-shadow hover:neo-shadow-active transition-all active:translate-x-1 active:translate-y-1" onclick="nextStep(3)">Next Step</button>
+</div>
+</div>
+<!-- Step 3: Energy (Hidden) -->
+<div class="bg-secondary-container border-4 border-on-surface p-8 neo-shadow-lg hidden" id="step-energy">
+<div class="flex items-center gap-4 mb-8">
+<span class="material-symbols-outlined text-5xl p-2 bg-on-surface text-surface border-2 border-on-surface">bolt</span>
+<h2 class="text-4xl font-black uppercase">Home Energy</h2>
+</div>
+<div class="space-y-6">
+<label class="block text-lg font-black uppercase">Monthly Electricity Bill ($)</label>
+<input id="input-energy" class="w-full h-8 bg-surface-container-highest border-4 border-on-surface appearance-none cursor-pointer [&amp;::-webkit-slider-thumb]:appearance-none [&amp;::-webkit-slider-thumb]:w-8 [&amp;::-webkit-slider-thumb]:h-12 [&amp;::-webkit-slider-thumb]:bg-primary-container [&amp;::-webkit-slider-thumb]:border-4 [&amp;::-webkit-slider-thumb]:border-on-surface" type="range"/>
+<div class="flex justify-between font-black uppercase text-sm">
+<span>$0</span>
+<span>$200+</span>
+</div>
+</div>
+<div class="mt-12 flex justify-between">
+<button class="px-8 py-4 border-4 border-on-surface bg-surface-container text-on-surface font-black uppercase neo-shadow hover:neo-shadow-active transition-all" onclick="nextStep(2)">Back</button>
+<button class="px-12 py-4 border-4 border-on-surface bg-primary-container text-on-surface font-black uppercase neo-shadow hover:neo-shadow-active transition-all active:translate-x-1 active:translate-y-1" onclick="nextStep(4)">Next Step</button>
+</div>
+</div>
+<!-- Tips / Info Section -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-6 border-4 border-on-surface bg-surface-container-low neo-shadow">
+<h4 class="font-black uppercase mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined">info</span> Why calculate?
+                            </h4>
+<p class="text-sm font-bold leading-tight">Understanding your baseline is the first step toward significant reduction. Every kilogram of CO2 saved counts towards global targets.</p>
+</div>
+<div class="p-6 border-4 border-on-surface bg-on-surface text-surface neo-shadow">
+<h4 class="font-black uppercase mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined">local_fire_department</span> High Impact
+                            </h4>
+<p class="text-sm font-bold leading-tight">Aviation and personal vehicle transport usually account for over 40% of an individual's carbon footprint in developed nations.</p>
+</div>
+</div>
+</div>
+<!-- REAL TIME IMPACT WIDGET -->
+<aside class="lg:col-span-4 sticky top-28">
+<div class="border-4 border-on-surface bg-white neo-shadow-lg overflow-hidden">
+<div class="bg-on-surface text-surface p-4 text-center">
+<h3 class="font-black uppercase tracking-widest">Live Estimation</h3>
+</div>
+<div class="p-8 text-center space-y-8">
+<div>
+<span class="text-8xl font-black leading-none italic" id="impact-value">2.4</span>
+<span class="text-3xl font-black uppercase block">Tons CO2/yr</span>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-black text-xs uppercase">
+<span>Eco Ranking</span>
+<span class="text-error">Needs Improvement</span>
+</div>
+<div class="w-full h-6 border-4 border-on-surface bg-surface-container-low relative overflow-hidden">
+<div class="absolute left-0 top-0 h-full bg-error border-r-2 border-on-surface" style="width: 75%"></div>
+</div>
+</div>
+<div class="py-6 border-y-4 border-on-surface border-dashed">
+<p class="text-xs font-black uppercase text-on-surface-variant mb-4">Breakdown by category</p>
+<div class="flex gap-2 h-12">
+<div class="flex-grow bg-primary-container border-2 border-on-surface flex items-center justify-center" title="Transport: 55%"><span class="material-symbols-outlined scale-75">commute</span></div>
+<div class="w-1/4 bg-tertiary-container border-2 border-on-surface flex items-center justify-center" title="Diet: 20%"><span class="material-symbols-outlined scale-75">restaurant</span></div>
+<div class="w-1/6 bg-secondary-container border-2 border-on-surface flex items-center justify-center" title="Energy: 15%"><span class="material-symbols-outlined scale-75">bolt</span></div>
+<div class="w-1/12 bg-surface-container border-2 border-on-surface flex items-center justify-center" title="Other: 10%"><span class="material-symbols-outlined scale-75">shopping_bag</span></div>
+</div>
+</div>
+<div class="pt-4">
+<button onclick="downloadReport()" class="w-full py-4 bg-on-surface text-surface font-black uppercase text-lg border-4 border-on-surface neo-shadow hover:bg-surface hover:text-on-surface transition-all">Download Report</button>
+</div>
+</div>
+</div>
+<!-- Carbon Visualization Card -->
+<div class="mt-8 border-4 border-on-surface bg-primary-fixed neo-shadow p-4 relative overflow-hidden h-48">
+
+<div class="relative z-10 flex flex-col h-full justify-between">
+<h4 class="font-black uppercase text-xl italic">Visualizing Your Cloud</h4>
+<p class="text-xs font-bold uppercase leading-none">Your annual emissions would fill approximately 480 olympic swimming pools.</p>
+<span class="material-symbols-outlined text-4xl">cloud</span>
+</div>
+</div>
+</aside>
+</div>
+<!-- Comparison Section -->
+<section class="mt-20 border-4 border-on-surface bg-white neo-shadow-lg p-8">
+<h3 class="text-4xl font-black uppercase mb-8">How you compare</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="space-y-4">
+<div class="h-40 flex items-end gap-2 bg-surface-container-low border-4 border-on-surface p-4">
+<div class="bg-primary h-full w-12 border-2 border-on-surface" title="You"></div>
+<div class="bg-surface-variant h-3/4 w-12 border-2 border-on-surface" title="Avg Resident"></div>
+<div class="bg-on-surface h-1/2 w-12 border-2 border-on-surface" title="Target"></div>
+</div>
+<p class="font-black uppercase text-sm">vs. Regional Average</p>
+</div>
+<div class="flex flex-col justify-center border-l-4 border-on-surface border-dashed pl-8">
+<span class="text-6xl font-black">+18%</span>
+<p class="font-bold uppercase text-on-surface-variant">Above Local Benchmark</p>
+</div>
+<div class="flex flex-col justify-center border-l-4 border-on-surface border-dashed pl-8">
+<span class="text-6xl font-black text-tertiary">-12%</span>
+<p class="font-bold uppercase text-on-surface-variant">Compared to last month</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<footer class="ml-64 bg-on-surface text-surface py-12 px-8 border-t-4 border-on-surface">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="text-center md:text-left">
+<span class="text-4xl font-black italic uppercase tracking-tighter">EcoTrace</span>
+<p class="font-bold uppercase text-surface/60 mt-2">The Future is Measurable.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-black uppercase hover:text-primary-fixed transition-colors" href="#">Methodology</a>
+<a class="font-black uppercase hover:text-primary-fixed transition-colors" href="/privacy">Privacy</a>
+<a class="font-black uppercase hover:text-primary-fixed transition-colors" href="/terms">Terms</a>
+<a class="font-black uppercase hover:text-primary-fixed transition-colors" href="/support">Support</a>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 border-2 border-surface flex items-center justify-center hover:bg-surface hover:text-on-surface transition-all"><span class="material-symbols-outlined">share</span></button>
+<button class="w-12 h-12 border-2 border-surface flex items-center justify-center hover:bg-surface hover:text-on-surface transition-all"><span class="material-symbols-outlined">mail</span></button>
+</div>
+</div>
+</footer>
+<script>
+        let selectedDiet = "omnivore";
+
+        function selectDiet(diet, btn) {
+            selectedDiet = diet;
+            btn.parentElement.querySelectorAll('button').forEach(b => {
+                b.classList.remove('bg-primary-fixed', 'neo-shadow-active');
+                b.classList.add('bg-white', 'neo-shadow');
+            });
+            btn.classList.remove('bg-white', 'neo-shadow');
+            btn.classList.add('bg-primary-fixed', 'neo-shadow-active');
+        }
+
+        async function nextStep(step) {
+            // Hide all steps
+            document.querySelectorAll('[id^="step-"]').forEach(el => el.classList.add('hidden'));
+            
+            // Show target step
+            const currentStep = document.getElementById('step-' + 
+                (step === 1 ? 'transport' : step === 2 ? 'diet' : step === 3 ? 'energy' : 'transport')
+            );
+            if(currentStep) currentStep.classList.remove('hidden');
+
+            // Update Progress Bar
+            const progressBar = document.getElementById('progress-bar');
+            const stepName = document.querySelector('#progress-bar + div');
+            
+            const progressMap = {
+                1: { width: '25%', text: 'Step 1: Transportation' },
+                2: { width: '50%', text: 'Step 2: Diet & Consumption' },
+                3: { width: '75%', text: 'Step 3: Energy Usage' },
+                4: { width: '100%', text: 'Step 4: Summary' }
+            };
+
+            progressBar.style.width = progressMap[step].width;
+            stepName.innerText = progressMap[step].text;
+
+            if (step === 4) {
+                // Gather data and call API
+                const carKm = parseFloat(document.getElementById('input-car').value) || 0;
+                const energyBill = parseFloat(document.getElementById('input-energy').value) || 50;
+
+                const reqData = {
+                    transport_km_per_day: carKm / 7,
+                    diet_type: selectedDiet,
+                    electricity_kwh_per_month: energyBill * 6, // rough estimate
+                    flights_per_year: 0,
+                    shopping_spend_usd_per_month: 200
+                };
+
+                try {
+                    const result = await calculateCarbon(reqData);
+                    document.getElementById('impact-value').innerText = (result.total_co2_kg_per_year / 1000).toFixed(1);
+                    
+                    // Save to DB
+                    const saved_kg = Math.max(0, 4000.0 - result.total_co2_kg_per_year);
+                    await saveCarbonResult(result.total_co2_kg_per_year, saved_kg);
+                    alert("Footprint calculated & saved to your EcoTrace profile! 🌍");
+                } catch(e) {
+                    console.error("Calculate Error", e);
+                }
+            }
+        }
+
+        function downloadReport() {
+            const impactValue = document.getElementById('impact-value').innerText;
+            const carMileage = document.getElementById('input-car').value || 0;
+            const energyBill = document.getElementById('input-energy').value || 0;
+            
+            if (window.jspdf) {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                
+                // Set layout colors & fonts
+                doc.setFillColor(255, 249, 232); // #fff9e8 background
+                doc.rect(0, 0, 210, 297, "F");
+                
+                // Neo-Brutalist Border
+                doc.setDrawColor(0, 0, 0);
+                doc.setLineWidth(1.5);
+                doc.rect(5, 5, 200, 287);
+                
+                // Header Banner
+                doc.setFillColor(255, 235, 59); // #FFEB3B yellow
+                doc.rect(10, 10, 190, 30, "FD");
+                
+                doc.setTextColor(0, 0, 0);
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(22);
+                doc.text("ECOTRACE CARBON REPORT", 20, 28);
+                
+                // Subheader
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(10);
+                doc.text(`PLANETARY INTEGRITY INVENTORY | GENERATED: ${new Date().toLocaleDateString()}`, 20, 36);
+                
+                // Main Footprint Section
+                doc.setFillColor(255, 255, 255);
+                doc.rect(10, 50, 190, 40, "FD");
+                
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(14);
+                doc.text("ESTIMATED ANNUAL CARBON FOOTPRINT", 15, 60);
+                
+                doc.setFontSize(40);
+                const numWidth = doc.getTextWidth(impactValue);
+                doc.text(`${impactValue}`, 15, 82);
+                doc.setFontSize(14);
+                doc.text(" Tons CO2 / year", 15 + numWidth + 5, 82);
+                
+                // Input Metrics Section
+                doc.setFillColor(255, 255, 255);
+                doc.rect(10, 100, 190, 60, "FD");
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(14);
+                doc.text("INPUT TELEMETRY DATA", 15, 112);
+                
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(12);
+                doc.text(`- Weekly Car Mileage: ${carMileage} km/week`, 15, 125);
+                doc.text(`- Home Energy Index: $${energyBill}/month`, 15, 137);
+                doc.text(`- Dietary Profile: ${selectedDiet.toUpperCase()}`, 15, 149);
+                
+                // Recommended Directives Section
+                doc.setFillColor(255, 255, 255);
+                doc.rect(10, 170, 190, 80, "FD");
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(14);
+                doc.text("RECOMMENDED MITIGATION DIRECTIVES", 15, 182);
+                
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(11);
+                doc.text("1. Switch to public transit or carbon-neutral commuting options.", 15, 197);
+                doc.text("2. Adopt a plant-forward or lower-impact diet to cut food emissions.", 15, 210);
+                doc.text("3. Optimize domestic power usage and transition to efficient appliances.", 15, 223);
+                doc.text("4. Engage in verified offset programs via the EcoTrace Rewards portal.", 15, 236);
+                
+                // Footer
+                doc.setFont("helvetica", "italic");
+                doc.setFontSize(10);
+                doc.text("\"The Future is Measurable.\"", 105, 275, null, null, "center");
+                
+                doc.save(`EcoTrace_Carbon_Report_${new Date().toISOString().slice(0,10)}.pdf`);
+            } else {
+                alert("PDF generation engine loading. Please try again in a moment!");
+            }
+        }
+    </script>
+</body></html>

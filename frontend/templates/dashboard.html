@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrace | Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Public+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#695f00",
+                        "primary": "#695f00",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#dbc90a",
+                        "background": "#fff9e8",
+                        "surface-container-highest": "#e8e2d1",
+                        "inverse-surface": "#333125",
+                        "primary-container": "#ffeb3b",
+                        "tertiary": "#006a69",
+                        "on-secondary-fixed": "#201c00",
+                        "inverse-on-surface": "#f6f1de",
+                        "surface-bright": "#fff9e8",
+                        "tertiary-container": "#5dfffe",
+                        "on-error": "#ffffff",
+                        "outline": "#7c7760",
+                        "on-tertiary-fixed": "#002020",
+                        "on-tertiary-container": "#007474",
+                        "error": "#ba1a1a",
+                        "error-container": "#ffdad6",
+                        "secondary": "#675f21",
+                        "on-primary-fixed": "#201c00",
+                        "on-primary-container": "#746900",
+                        "on-secondary-fixed-variant": "#4e4809",
+                        "secondary-fixed": "#f0e497",
+                        "on-error-container": "#93000a",
+                        "surface": "#fff9e8",
+                        "on-surface": "#1d1c11",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#eee8d6",
+                        "primary-fixed": "#f9e534",
+                        "secondary-fixed-dim": "#d3c87e",
+                        "on-surface-variant": "#4a4733",
+                        "surface-dim": "#dfdac8",
+                        "on-secondary-container": "#6b6424",
+                        "on-secondary": "#ffffff",
+                        "tertiary-fixed": "#55f9f8",
+                        "surface-container": "#f3eedc",
+                        "on-tertiary-fixed-variant": "#00504f",
+                        "inverse-primary": "#dbc90a",
+                        "outline-variant": "#cdc7ac",
+                        "on-primary": "#ffffff",
+                        "surface-container-low": "#f9f3e1",
+                        "surface-variant": "#e8e2d1",
+                        "on-primary-fixed-variant": "#4f4800",
+                        "secondary-container": "#ede194",
+                        "tertiary-fixed-dim": "#25dcdb",
+                        "on-background": "#1d1c11"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Space Grotesk"],
+                        "display": ["Space Grotesk"],
+                        "body": ["Space Grotesk"],
+                        "label": ["Public Sans"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px #000000;
+        }
+        .neo-shadow-lg {
+            box-shadow: 8px 8px 0px 0px #000000;
+        }
+        .neo-border {
+            border: 3px solid #000000;
+        }
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #fff9e8;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script src="/static/js/api.js"></script></head>
+<body class="text-on-background">
+<!-- SideNavBar Component -->
+<aside class="flex flex-col fixed left-0 top-0 h-full p-4 gap-4 bg-surface h-screen w-64 border-r-4 border-on-surface shadow-[4px_0px_0px_0px_rgba(0,0,0,1)] z-[60]">
+<div class="mb-8 flex items-center gap-3">
+<div class="w-10 h-10 bg-primary-container border-2 border-on-surface flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface font-bold">eco</span>
+</div>
+<div class="flex flex-col">
+<span class="text-2xl font-black text-on-surface italic uppercase tracking-tight leading-none">EcoTrace</span>
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">User Dashboard</span>
+</div>
+</div>
+<nav class="flex flex-col gap-3">
+<a class="flex items-center gap-3 p-3 bg-primary-container text-on-primary-container border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-[-2px] translate-y-[-2px] transition-all duration-75" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-bold uppercase tracking-tight">Overview</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">track_changes</span>
+<span class="font-bold uppercase tracking-tight">Goals</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">calculate</span>
+<span class="font-bold uppercase tracking-tight">Calculator</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">military_tech</span>
+<span class="font-bold uppercase tracking-tight">Rewards</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">settings</span>
+<span class="font-bold uppercase tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-red-500 hover:bg-red-100 hover:text-red-700 transition-all duration-75 group" href="#" onclick="logout(); return false;">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">logout</span>
+<span class="font-bold uppercase tracking-tight">Logout</span>
+</a>
+</nav>
+<div class="mt-auto p-4 bg-surface-container neo-border neo-shadow flex items-center gap-3">
+<img class="w-10 h-10 border-2 border-black object-cover rounded-none" data-alt="A portrait of a cheerful, diverse environmental activist in professional attire, looking directly at the camera with a confident smile. The background is a clean, bright studio setting with high-key lighting, maintaining a modern and professional aesthetic that aligns with the neo-brutalist theme of sharp edges and high contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBejfpGXvCCtMkYOxPMRyeDqGhVjJn8SBa44fQbXCNgUYrUCULqymkagAm_3T3U3UjXmBb4mt7zQEGGqEJJ62tGClN0TjfFoyRD9Ru_boDs-9GGVulKnCXHPdn_n1H1wMYVHK7aYUSLHskAt_920ea784ANfn0hmQviCEnbU6OPZ3qsPy08LmL3Cy_NKgQ_Zx7w-fboXgMuLRu8W_0ePzOtNw9i38jBqGoX1dOn1VLMG_EnScdl12ECrvnzui1ySr3vOI7U06YvkJhd"/>
+<div class="overflow-hidden">
+<p class="font-bold text-sm truncate">Alex Rivera</p>
+<p class="text-xs text-on-surface-variant">Pro Warrior</p>
+</div>
+</div>
+</aside>
+<!-- TopAppBar Component -->
+<header class="flex justify-between items-center px-8 py-4 sticky top-0 z-50 ml-64 bg-surface w-full border-b-4 border-on-surface shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-6">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-3 text-on-surface">search</span>
+<input class="pl-10 pr-4 py-2 neo-border bg-white text-sm focus:ring-4 focus:ring-primary-container outline-none w-64 font-bold" placeholder="Search eco-metrics..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="w-12 h-12 neo-border bg-white flex items-center justify-center hover:bg-primary-container transition-colors active:shadow-none active:translate-x-1 active:translate-y-1 neo-shadow">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="px-4 h-12 neo-border bg-black text-white flex items-center gap-2 hover:bg-primary-container hover:text-black transition-colors neo-shadow">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-black uppercase text-sm">Profile</span>
+</button>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-64 p-8 min-h-screen">
+<!-- Welcome Header -->
+<section class="mb-12">
+<div class="bg-primary-container p-6 neo-border neo-shadow inline-block">
+<h1 class="text-5xl font-black uppercase italic tracking-tighter leading-tight">
+                    Welcome back,<br/>Eco-Warrior!
+                </h1>
+</div>
+<p class="mt-4 font-bold text-xl text-on-surface-variant flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">verified</span>
+                You saved 12kg of CO2 since your last login.
+            </p>
+</section>
+<!-- Summary Cards Row -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<!-- CO2 Saved -->
+<div class="bg-white p-6 neo-border neo-shadow group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-4xl text-primary font-bold">co2</span>
+<span class="bg-primary-container px-2 py-1 neo-border text-xs font-black">+12%</span>
+</div>
+<h3 class="text-on-surface-variant font-bold uppercase text-xs tracking-widest mb-1">CO2 Saved Total</h3>
+<p class="text-4xl font-black" id="co2-saved">...</p>
+</div>
+<!-- Current Streak -->
+<div class="bg-white p-6 neo-border neo-shadow group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-4xl text-error font-bold" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+</div>
+<h3 class="text-on-surface-variant font-bold uppercase text-xs tracking-widest mb-1">Current Streak</h3>
+<p class="text-4xl font-black" id="current-streak">...</p>
+</div>
+<!-- Eco Level -->
+<div class="bg-white p-6 neo-border neo-shadow group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-4xl text-tertiary font-bold">potted_plant</span>
+</div>
+<h3 class="text-on-surface-variant font-bold uppercase text-xs tracking-widest mb-1">Eco Level</h3>
+<p class="text-4xl font-black leading-tight" id="eco-level">...</p>
+</div>
+<!-- Badges Earned -->
+<div class="bg-white p-6 neo-border neo-shadow group hover:-translate-y-1 transition-transform">
+<div class="flex justify-between items-start mb-4">
+<span class="material-symbols-outlined text-4xl text-secondary font-bold">military_tech</span>
+</div>
+<h3 class="text-on-surface-variant font-bold uppercase text-xs tracking-widest mb-1">Badges Earned</h3>
+<p class="text-4xl font-black" id="badges-earned">...</p>
+</div>
+</section>
+<!-- Main Bento Grid Section -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Carbon Chart (Monthly Reduction) -->
+<div class="col-span-12 lg:col-span-8 bg-white neo-border neo-shadow p-8">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-2xl font-black uppercase italic tracking-tight">Monthly CO2 Reduction</h2>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-primary-container neo-border text-xs font-black">2024</span>
+<span class="px-3 py-1 bg-surface-container neo-border text-xs font-black">LINE CHART</span>
+</div>
+</div>
+<div id="monthly-chart-bars" class="h-64 flex items-end justify-between gap-4 border-b-4 border-black pb-2">
+<div class="w-full bg-primary-container neo-border h-[40%] hover:bg-black transition-colors cursor-pointer relative group">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 font-black text-xs opacity-0 group-hover:opacity-100 transition-opacity">JAN</span>
+</div>
+<div class="w-full bg-primary-container neo-border h-[65%] hover:bg-black transition-colors cursor-pointer relative group">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 font-black text-xs opacity-0 group-hover:opacity-100 transition-opacity">FEB</span>
+</div>
+<div class="w-full bg-primary-container neo-border h-[55%] hover:bg-black transition-colors cursor-pointer relative group">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 font-black text-xs opacity-0 group-hover:opacity-100 transition-opacity">MAR</span>
+</div>
+<div class="w-full bg-primary-container neo-border h-[85%] hover:bg-black transition-colors cursor-pointer relative group">
+<span class="absolute -top-8 left-1/2 -translate-x-1/2 font-black text-xs opacity-0 group-hover:opacity-100 transition-opacity">APR</span>
+</div>
+<div class="w-full bg-black neo-border h-[95%] relative">
+<span class="absolute -top-10 left-1/2 -translate-x-1/2 font-black text-xs bg-white neo-border px-2 py-1">MAY (42kg)</span>
+</div>
+<div class="w-full bg-primary-container neo-border h-[20%] hover:bg-black transition-colors cursor-pointer"></div>
+<div class="w-full bg-primary-container neo-border h-[35%] hover:bg-black transition-colors cursor-pointer"></div>
+</div>
+<div class="flex justify-between mt-4 text-[10px] font-black uppercase tracking-widest text-on-surface-variant">
+<span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span>
+</div>
+</div>
+<!-- AI Insights -->
+<div class="col-span-12 lg:col-span-4 bg-tertiary-container neo-border neo-shadow p-6 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-3xl font-black">psychology</span>
+<h2 class="text-xl font-black uppercase italic tracking-tight">AI Insights</h2>
+</div>
+<p class="text-lg font-bold leading-tight">
+                        "Did you know? Switching to <span class="bg-black text-white px-1">LED bulbs</span> could save you 50kg of CO2 this year."
+                    </p>
+</div>
+<button class="mt-6 w-full py-3 bg-black text-white neo-border neo-shadow hover:bg-white hover:text-black transition-all font-black uppercase text-sm active:shadow-none active:translate-x-1 active:translate-y-1">
+                    Calculate My Savings
+                </button>
+</div>
+<!-- Activity Feed -->
+<div class="col-span-12 lg:col-span-4 bg-white neo-border neo-shadow p-6">
+<h2 class="text-xl font-black uppercase italic tracking-tight mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">history</span> Recent Actions
+                </h2>
+<div class="space-y-4">
+    <p class="font-bold text-on-surface-variant italic">No recent actions recorded. Start tracking!</p>
+</div>
+</div>
+<!-- Goal Tracker & Gamification -->
+<div class="col-span-12 lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Goal Tracker -->
+<div class="bg-white neo-border neo-shadow p-6">
+<h2 class="text-xl font-black uppercase italic tracking-tight mb-6">Current Goal</h2>
+<div id="dashboard-current-goal" class="space-y-6">
+<div>
+<div class="flex justify-between items-center mb-2">
+<p class="font-bold text-sm">Reduce commute emissions by 20%</p>
+<p class="font-black">65%</p>
+</div>
+<div class="w-full h-8 neo-border bg-surface-container overflow-hidden">
+<div class="h-full bg-primary group-hover:bg-primary-container transition-all" style="width: 65%;"></div>
+</div>
+</div>
+<div class="flex items-center gap-4 bg-primary-container p-3 neo-border text-xs font-black uppercase tracking-tight">
+<span class="material-symbols-outlined">timer</span>
+                            8 days remaining to hit milestone
+                        </div>
+</div>
+</div>
+<!-- Gamification Panel -->
+<div class="bg-white neo-border neo-shadow p-6">
+<h2 class="text-xl font-black uppercase italic tracking-tight mb-6">Badges</h2>
+<div class="grid grid-cols-3 gap-4">
+<div class="aspect-square neo-border bg-primary-container flex flex-col items-center justify-center group relative cursor-help">
+<span class="material-symbols-outlined text-3xl font-black">directions_bike</span>
+<span class="absolute bottom-1 text-[8px] font-black uppercase">Active</span>
+</div>
+<div class="aspect-square neo-border bg-secondary-container flex flex-col items-center justify-center group relative cursor-help">
+<span class="material-symbols-outlined text-3xl font-black">eco</span>
+<span class="absolute bottom-1 text-[8px] font-black uppercase">Green</span>
+</div>
+<div class="aspect-square neo-border bg-tertiary-container flex flex-col items-center justify-center group relative cursor-help">
+<span class="material-symbols-outlined text-3xl font-black">shopping_bag</span>
+<span class="absolute bottom-1 text-[8px] font-black uppercase">Reuse</span>
+</div>
+<!-- Locked badges -->
+<div class="aspect-square neo-border bg-surface-container opacity-40 flex items-center justify-center grayscale relative">
+<span class="material-symbols-outlined text-3xl">electric_car</span>
+<span class="material-symbols-outlined absolute text-sm top-1 right-1 font-bold">lock</span>
+</div>
+<div class="aspect-square neo-border bg-surface-container opacity-40 flex items-center justify-center grayscale relative">
+<span class="material-symbols-outlined text-3xl">solar_power</span>
+<span class="material-symbols-outlined absolute text-sm top-1 right-1 font-bold">lock</span>
+</div>
+<div class="aspect-square neo-border bg-surface-container opacity-40 flex items-center justify-center grayscale relative">
+<span class="material-symbols-outlined text-3xl">forest</span>
+<span class="material-symbols-outlined absolute text-sm top-1 right-1 font-bold">lock</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Decorative Footer Element -->
+<footer class="mt-16 border-t-8 border-black pt-8 pb-12 flex flex-col md:flex-row justify-between items-start gap-8">
+<div>
+<h4 class="text-3xl font-black uppercase italic tracking-tighter mb-4">Join the movement.</h4>
+<div class="flex gap-4">
+<button onclick="window.location.href='/privacy'" class="px-6 py-2 bg-white neo-border neo-shadow font-black uppercase text-xs hover:bg-primary-container transition-colors">Privacy</button>
+<button onclick="window.location.href='/terms'" class="px-6 py-2 bg-white neo-border neo-shadow font-black uppercase text-xs hover:bg-primary-container transition-colors">Terms</button>
+<button onclick="window.location.href='/support'" class="px-6 py-2 bg-white neo-border neo-shadow font-black uppercase text-xs hover:bg-primary-container transition-colors">Support</button>
+</div>
+</div>
+</footer>
+</main>
+<script>
+        // Simple micro-interaction for neo-brutalism buttons
+        document.querySelectorAll('button, a').forEach(el => {
+            el.addEventListener('mousedown', () => {
+                if (el.classList.contains('neo-shadow')) {
+                    el.style.transform = 'translate(2px, 2px)';
+                    el.style.boxShadow = '2px 2px 0px 0px #000000';
+                }
+            });
+            el.addEventListener('mouseup', () => {
+                if (el.classList.contains('neo-shadow')) {
+                    el.style.transform = '';
+                    el.style.boxShadow = '';
+                }
+            });
+            el.addEventListener('mouseleave', () => {
+                if (el.classList.contains('neo-shadow')) {
+                    el.style.transform = '';
+                    el.style.boxShadow = '';
+                }
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const userId = localStorage.getItem('eco_user');
+            if (userId) {
+                try {
+                    const dashboardData = await fetchDashboard(userId);
+                    if (dashboardData) {
+                        document.getElementById('co2-saved').innerText = dashboardData.total_co2_saved_kg + " kg";
+                        document.getElementById('current-streak').innerText = dashboardData.current_streak_days + " Days";
+                        document.getElementById('eco-level').innerText = "Level " + dashboardData.eco_level;
+                        document.getElementById('badges-earned').innerText = dashboardData.badges_earned.length;
+
+                        // Dynamic Monthly Chart
+                        const monthlySavings = dashboardData.monthly_savings || [15.2, 24.8, 20.1, 35.6, 42.0, 10.5, 14.8];
+                        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL"];
+                        const maxSaving = Math.max(...monthlySavings, 1);
+                        const chartBars = document.getElementById('monthly-chart-bars');
+                        if (chartBars) {
+                            chartBars.innerHTML = monthlySavings.map((saving, idx) => {
+                                const pct = (saving / maxSaving) * 90; // scale to max 90%
+                                return `
+                                    <div class="w-full bg-primary-container neo-border hover:bg-black transition-colors cursor-pointer relative group" style="height: ${pct}%">
+                                        <span class="absolute -top-10 left-1/2 -translate-x-1/2 font-black text-xs bg-white neo-border px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">${months[idx]} (${saving}kg)</span>
+                                    </div>
+                                `;
+                            }).join('');
+                        }
+                    }
+
+                    // Dynamic Goals
+                    const goals = await fetchGoals(userId);
+                    const activeGoals = goals.filter(g => g.status === 'in_progress' || !g.completed);
+                    const goalContainer = document.getElementById('dashboard-current-goal');
+                    if (goalContainer) {
+                        if (activeGoals.length > 0) {
+                            const mainGoal = activeGoals[0];
+                            const progress = mainGoal.progress_percent || 0;
+                            goalContainer.innerHTML = `
+                                <div>
+                                    <div class="flex justify-between items-center mb-2">
+                                        <p class="font-bold text-sm">${mainGoal.title}</p>
+                                        <p class="font-black">${progress}%</p>
+                                    </div>
+                                    <div class="w-full h-8 neo-border bg-surface-container overflow-hidden">
+                                        <div class="h-full bg-primary group-hover:bg-primary-container transition-all" style="width: ${progress}%;"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-4 bg-primary-container p-3 neo-border text-xs font-black uppercase tracking-tight">
+                                    <span class="material-symbols-outlined">timer</span>
+                                    Active goal tracking in progress
+                                </div>
+                            `;
+                        } else {
+                            goalContainer.innerHTML = `
+                                <div class="p-4 border-2 border-dashed border-black text-center">
+                                    <p class="font-bold text-sm mb-2">No active goals</p>
+                                    <button onclick="window.location.href='/goals'" class="px-4 py-2 bg-[#ffeb3b] neo-border font-black uppercase text-xs">Set Goal</button>
+                                </div>
+                            `;
+                        }
+                    }
+                } catch (e) {
+                    console.error("Failed to load dashboard data", e);
+                }
+            }
+        });
+    </script>
+</body></html>

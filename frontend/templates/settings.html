@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Settings | EcoTrace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Public+Sans:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff9e8",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f6f1de",
+                    "surface-container": "#f3eedc",
+                    "on-primary-fixed-variant": "#4f4800",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#25dcdb",
+                    "primary-fixed-dim": "#dbc90a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#d3c87e",
+                    "primary-fixed": "#f9e534",
+                    "primary-container": "#ffeb3b",
+                    "outline-variant": "#cdc7ac",
+                    "on-secondary-fixed": "#201c00",
+                    "on-error": "#ffffff",
+                    "surface": "#fff9e8",
+                    "tertiary-fixed": "#55f9f8",
+                    "surface-variant": "#e8e2d1",
+                    "on-primary-container": "#746900",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#002020",
+                    "surface-container-low": "#f9f3e1",
+                    "inverse-primary": "#dbc90a",
+                    "on-background": "#1d1c11",
+                    "on-tertiary-fixed-variant": "#00504f",
+                    "on-primary-fixed": "#201c00",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e8e2d1",
+                    "surface-tint": "#695f00",
+                    "inverse-surface": "#333125",
+                    "surface-dim": "#dfdac8",
+                    "tertiary-container": "#5dfffe",
+                    "on-surface-variant": "#4a4733",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#7c7760",
+                    "on-tertiary-container": "#007474",
+                    "on-secondary-fixed-variant": "#4e4809",
+                    "tertiary": "#006a69",
+                    "primary": "#695f00",
+                    "background": "#fff9e8",
+                    "surface-container-high": "#eee8d6",
+                    "secondary": "#675f21",
+                    "secondary-container": "#ede194",
+                    "secondary-fixed": "#f0e497",
+                    "on-surface": "#1d1c11",
+                    "on-secondary-container": "#6b6424"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "display": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Space Grotesk', sans-serif; }
+        .neo-brutal-shadow { box-shadow: 4px 4px 0px 0px rgba(0,0,0,1); }
+        .neo-brutal-shadow-lg { box-shadow: 8px 8px 0px 0px rgba(0,0,0,1); }
+        .neo-brutal-shadow-sm { box-shadow: 2px 2px 0px 0px rgba(0,0,0,1); }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        input:checked + .toggle-bg { background-color: #ffeb3b; }
+        input:checked + .toggle-bg .toggle-dot { transform: translateX(1.5rem); }
+    </style>
+<script src="/static/js/api.js"></script></head>
+<body class="bg-background text-on-background min-h-screen">
+<!-- SideNavBar Component -->
+<nav class="flex flex-col fixed left-0 top-0 h-full p-4 gap-4 h-screen w-64 border-r-4 border-on-surface bg-surface shadow-[4px_0px_0px_0px_rgba(0,0,0,1)] z-[60]">
+<div class="mb-8 p-2">
+<h1 class="text-2xl font-black text-on-surface italic uppercase tracking-tight">EcoTrace</h1>
+<p class="font-headline font-bold text-xs uppercase text-on-surface-variant">User Dashboard</p>
+</div>
+<div class="flex flex-col gap-3">
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 border-2 border-transparent active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span>Overview</span>
+</a>
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 border-2 border-transparent active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span>Goals</span>
+</a>
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 border-2 border-transparent active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">calculate</span>
+<span>Calculator</span>
+</a>
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-75 border-2 border-transparent active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+<span>Rewards</span>
+</a>
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight bg-primary-container text-on-primary-container border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-[-2px] translate-y-[-2px] transition-all duration-75 active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-red-500 hover:bg-red-100 hover:text-red-700 transition-all duration-75 group" href="#" onclick="logout(); return false;">
+<span class="material-symbols-outlined text-red-500">logout</span>
+<span class="font-headline font-bold uppercase tracking-tight text-red-500">Logout</span>
+</a>
+</div>
+<div class="mt-auto p-4 border-4 border-on-surface bg-surface-container-highest neo-brutal-shadow flex items-center gap-3">
+<div class="w-10 h-10 border-2 border-on-surface bg-primary overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a young environmental scientist with a friendly expression. The image is styled with high-contrast neo-brutalist lighting, featuring a bright yellow background and sharp black outlines. The person has short dark hair and wears a modern linen shirt, reflecting a sustainable and eco-conscious lifestyle choice." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxCqi8m9UYNVXe-4-QU4uk0LV5iG-8O9pcckVdbxlpQqkkyhZTSLqVicuAUlJWpqQe29EZcs1PVzI0-MTW8jA5BkuYst-uNsRwGXDW-esJwKljRVC0t2mGhfkE9pra7vf5imSfe3nrHpkZMnJv229R2XwqDsaTq_0lxnyJ70yxcHZO4qSbB85AK7JQfWTRoTjznW0Grv2LAu8lDXCaT4fR8EPvL8-7wjG5uY0uX-XGSVMdEMvsvDEYDCnDqARxkB_SboqPwcR31rDG"/>
+</div>
+<div class="overflow-hidden">
+<p class="font-bold text-sm truncate">Alex Rivera</p>
+<p class="text-[10px] uppercase font-black text-primary">Eco Guardian</p>
+</div>
+</div>
+</nav>
+<!-- TopAppBar Component -->
+<header class="flex justify-between items-center px-8 py-4 sticky top-0 z-50 ml-64 w-[calc(100%-16rem)] border-b-4 border-on-surface bg-surface shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-6 flex-1">
+<h2 class="text-3xl font-black uppercase text-on-surface font-headline">EcoTrace</h2>
+<div class="relative flex-1 max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container border-4 border-on-surface focus:outline-none focus:ring-4 focus:ring-primary-container font-bold" placeholder="Search settings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 border-4 border-on-surface bg-surface-container-highest hover:bg-primary-container transition-colors focus:ring-4 focus:ring-primary-container">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 border-4 border-on-surface bg-surface-container-highest hover:bg-primary-container transition-colors focus:ring-4 focus:ring-primary-container">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-8 min-h-[calc(100vh-80px)]">
+<div class="max-w-6xl mx-auto">
+<header class="mb-12">
+<h1 class="text-6xl font-black uppercase italic mb-2">Settings</h1>
+<p class="text-xl font-bold border-l-8 border-primary pl-4">Customize your footprint tracking experience.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Profile Settings (Large Block) -->
+<section class="md:col-span-8 border-4 border-on-surface bg-surface-container-low p-8 neo-brutal-shadow-lg">
+<div class="flex justify-between items-start mb-8">
+<div>
+<h3 class="text-3xl font-black uppercase mb-1">Profile Settings</h3>
+<p class="font-bold text-on-surface-variant">Update your personal information and avatar.</p>
+</div>
+<span class="material-symbols-outlined text-4xl text-primary">person</span>
+</div>
+<div class="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
+<div class="relative group">
+<div class="w-32 h-32 border-4 border-on-surface bg-primary-fixed-dim neo-brutal-shadow flex items-center justify-center overflow-hidden">
+<img id="settings-avatar" class="w-full h-full object-cover" data-alt="A vivid and high-contrast digital illustration of a stylized eco-warrior avatar." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmbxBDuQgQ_juwISAMZ3VKBA0Ul3r4KzOGEnkY9NvCW3R-C-Yrc69icQvwjYdEPmqsP1oH69e35PqH_pl9wqZmeGyTEwtOMYQx_5yjAu2J7pid98PJcc_A9PjwSxhRH_0GBvsoGw89CFlTx0Q-b52Y-HcBHFL_mjyTP2vU-R0-WenWvVliiuq5g36wJZYSeFhEfg43-cOnmL0u-1inxvHwHiEEbRf5NeIuip7EjKMEQcRc0EwtA8zjnDXZKtGw-YGq32S_zLDZS71t"/>
+</div>
+<button onclick="changeAvatar()" class="absolute -bottom-2 -right-2 p-2 bg-secondary-container border-4 border-on-surface neo-brutal-shadow-sm hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+</div>
+<div class="flex-1 grid grid-cols-1 gap-6 w-full">
+<div class="flex flex-col gap-2">
+<label class="uppercase font-black text-xs tracking-widest">Display Name</label>
+<input id="settings-name" class="bg-surface border-4 border-on-surface p-3 font-bold focus:ring-4 focus:ring-primary-container outline-none" type="text" value="Alex Rivera"/>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="flex flex-col gap-2">
+<label class="uppercase font-black text-xs tracking-widest">Rank</label>
+<div id="settings-rank" class="bg-secondary-fixed p-3 border-4 border-on-surface font-black uppercase flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                                        Eco Guardian
+                                    </div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="uppercase font-black text-xs tracking-widest">Impact ID</label>
+<div id="settings-impact-id" class="bg-surface-variant p-3 border-4 border-on-surface font-mono font-bold text-center">
+                                        #ET-8829-XR
+                                    </div>
+</div>
+</div>
+</div>
+</div>
+<button onclick="saveProfileChanges()" class="w-full md:w-auto px-8 py-3 bg-primary-container border-4 border-on-surface font-black uppercase neo-brutal-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all active:translate-x-0 active:translate-y-0 active:shadow-none">
+    Save Profile Changes
+</button>
+</section>
+<!-- Right Sidebar (Alerts & Privacy) -->
+<div class="md:col-span-4 flex flex-col gap-8">
+<!-- Notification Preferences (Compact Block) -->
+<section class="border-4 border-on-surface bg-tertiary-fixed p-6 neo-brutal-shadow-lg">
+<h3 class="text-2xl font-black uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">notifications_active</span>
+                        Alerts
+                    </h3>
+<div class="space-y-6">
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-bold uppercase tracking-tight">Weekly Reports</span>
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-surface-container-highest border-2 border-on-surface rounded-full transition-colors">
+<div class="toggle-dot absolute left-1 top-1 bg-on-surface w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-bold uppercase tracking-tight">Goal Milestones</span>
+<div class="relative">
+<input checked="" class="sr-only" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-surface-container-highest border-2 border-on-surface rounded-full transition-colors">
+<div class="toggle-dot absolute left-1 top-1 bg-on-surface w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</div>
+</label>
+<label class="flex items-center justify-between cursor-pointer group">
+<span class="font-bold uppercase tracking-tight">Community Feed</span>
+<div class="relative">
+<input class="sr-only" type="checkbox"/>
+<div class="toggle-bg w-12 h-6 bg-surface-container-highest border-2 border-on-surface rounded-full transition-colors">
+<div class="toggle-dot absolute left-1 top-1 bg-on-surface w-4 h-4 rounded-full transition-transform"></div>
+</div>
+</div>
+</label>
+</div>
+<div class="mt-12 p-4 border-2 border-dashed border-on-surface bg-surface/30">
+<p class="text-xs font-bold leading-tight">EcoTrace uses real-time alerts to help you stay within your daily carbon budget.</p>
+</div>
+</section>
+<!-- Data Privacy (Compact Block) -->
+<section class="border-4 border-on-surface bg-surface-container-highest p-6 neo-brutal-shadow-lg">
+<h3 class="text-2xl font-black uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined">security</span>
+                        Privacy
+                    </h3>
+<div class="space-y-4">
+<button class="w-full text-left p-3 border-2 border-on-surface bg-surface font-bold hover:bg-primary-container transition-colors flex justify-between items-center">
+                            Privacy Audit
+                            <span class="material-symbols-outlined">chevron_right</span>
+</button>
+<button class="w-full text-left p-3 border-2 border-on-surface bg-surface font-bold hover:bg-primary-container transition-colors flex justify-between items-center">
+                            Download Data
+                            <span class="material-symbols-outlined">download</span>
+</button>
+<button class="w-full text-left p-3 border-2 border-on-surface bg-error-container text-on-error-container font-bold hover:bg-error hover:text-white transition-colors flex justify-between items-center">
+                            Delete Account
+                            <span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</section>
+</div>
+<!-- Footer / System Info -->
+<footer class="mt-12 pt-8 border-t-4 border-on-surface flex flex-col md:flex-row justify-between items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-4xl">eco</span>
+<div>
+<p class="font-black uppercase text-sm">EcoTrace Core v2.4.0</p>
+<p class="text-xs font-bold">Carbon Accounting Engine: Certified Net-Zero</p>
+</div>
+</div>
+<div class="flex gap-8 font-black uppercase text-[10px] tracking-[0.2em]">
+<a class="hover:underline" href="#">Documentation</a>
+<a class="hover:underline" href="/support">Support</a>
+<a class="hover:underline" href="/terms">Terms of Service</a>
+</div>
+</footer>
+</div>
+</main>
+<!-- Floating Atmosphere Elements -->
+<div class="fixed bottom-8 right-8 pointer-events-none select-none z-[100]">
+<div class="bg-primary-container border-4 border-on-surface p-4 neo-brutal-shadow transform rotate-3 animate-pulse">
+<p class="font-black uppercase text-[10px] leading-tight">Settings Synchronized<br/>Cloud Encrypted</p>
+</div>
+</div>
+<script>
+        // Simple Interaction logic for toggles
+        document.querySelectorAll('input[type="checkbox"]').forEach(toggle => {
+            toggle.addEventListener('change', function() {
+                const bg = this.nextElementSibling;
+                const dot = bg.querySelector('.toggle-dot');
+                if (this.checked) {
+                    bg.classList.add('bg-primary-container');
+                    dot.style.transform = 'translateX(1.5rem)';
+                } else {
+                    bg.classList.remove('bg-primary-container');
+                    dot.style.transform = 'translateX(0)';
+                }
+            });
+        });
+
+        // Search highlight interaction
+        const searchInput = document.querySelector('input[placeholder="Search settings..."]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('neo-brutal-shadow');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('neo-brutal-shadow');
+        });
+    </script>
+</body></html>

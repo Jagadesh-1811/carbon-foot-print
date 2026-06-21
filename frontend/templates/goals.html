@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EcoTrace | Goals Dashboard</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Public+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "surface-bright": "#fff9e8",
+                    "error-container": "#ffdad6",
+                    "inverse-on-surface": "#f6f1de",
+                    "surface-container": "#f3eedc",
+                    "on-primary-fixed-variant": "#4f4800",
+                    "error": "#ba1a1a",
+                    "tertiary-fixed-dim": "#25dcdb",
+                    "primary-fixed-dim": "#dbc90a",
+                    "on-primary": "#ffffff",
+                    "secondary-fixed-dim": "#d3c87e",
+                    "primary-fixed": "#f9e534",
+                    "primary-container": "#ffeb3b",
+                    "outline-variant": "#cdc7ac",
+                    "on-secondary-fixed": "#201c00",
+                    "on-error": "#ffffff",
+                    "surface": "#fff9e8",
+                    "tertiary-fixed": "#55f9f8",
+                    "surface-variant": "#e8e2d1",
+                    "on-primary-container": "#746900",
+                    "on-secondary": "#ffffff",
+                    "on-tertiary-fixed": "#002020",
+                    "surface-container-low": "#f9f3e1",
+                    "inverse-primary": "#dbc90a",
+                    "on-background": "#1d1c11",
+                    "on-tertiary-fixed-variant": "#00504f",
+                    "on-primary-fixed": "#201c00",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e8e2d1",
+                    "surface-tint": "#695f00",
+                    "inverse-surface": "#333125",
+                    "surface-dim": "#dfdac8",
+                    "tertiary-container": "#5dfffe",
+                    "on-surface-variant": "#4a4733",
+                    "on-tertiary": "#ffffff",
+                    "outline": "#7c7760",
+                    "on-tertiary-container": "#007474",
+                    "on-secondary-fixed-variant": "#4e4809",
+                    "tertiary": "#006a69",
+                    "primary": "#695f00",
+                    "background": "#fff9e8",
+                    "surface-container-high": "#eee8d6",
+                    "secondary": "#675f21",
+                    "secondary-container": "#ede194",
+                    "secondary-fixed": "#f0e497",
+                    "on-surface": "#1d1c11",
+                    "on-secondary-container": "#6b6424"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Space Grotesk"],
+                    "display": ["Space Grotesk"],
+                    "body": ["Space Grotesk"],
+                    "label": ["Public Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .neo-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-shadow-lg {
+            box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+        }
+        .neo-border {
+            border: 3px solid #000000;
+        }
+        body {
+            background-color: #fff9e8;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+    </style>
+<script src="/static/js/api.js"></script></head>
+<body class="bg-background text-on-surface">
+<!-- SideNavBar (from JSON) -->
+<aside class="flex flex-col fixed left-0 top-0 h-full p-4 gap-4 bg-surface dark:bg-background h-screen w-64 border-r-4 border-on-surface shadow-[4px_0px_0px_0px_rgba(0,0,0,1)] z-[60]">
+<div class="mb-8 p-2">
+<h1 class="text-2xl font-black text-on-surface dark:text-on-background italic">EcoTrace</h1>
+<p class="font-headline font-bold uppercase tracking-tight text-primary text-xs">User Dashboard</p>
+</div>
+<nav class="flex flex-col gap-3">
+<!-- Overview -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container dark:hover:bg-secondary transition-all duration-75 active:translate-x-0 active:translate-y-0 active:shadow-none" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Overview
+            </a>
+<!-- Goals (Active State) -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight bg-primary-container text-on-primary-container border-2 border-on-surface shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] translate-x-[-2px] translate-y-[-2px]" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+                Goals
+            </a>
+<!-- Calculator -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container dark:hover:bg-secondary transition-all duration-75" href="#">
+<span class="material-symbols-outlined">calculate</span>
+                Calculator
+            </a>
+<!-- Rewards -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container dark:hover:bg-secondary transition-all duration-75" href="#">
+<span class="material-symbols-outlined">military_tech</span>
+                Rewards
+            </a>
+<!-- Settings -->
+<a class="flex items-center gap-3 p-3 font-headline font-bold uppercase tracking-tight text-on-surface-variant dark:text-on-secondary-fixed-variant hover:text-on-surface hover:bg-secondary-container dark:hover:bg-secondary transition-all duration-75" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 p-3 text-red-500 hover:bg-red-100 hover:text-red-700 transition-all duration-75 group" href="#" onclick="logout(); return false;">
+<span class="material-symbols-outlined text-red-500">logout</span>
+<span class="font-bold uppercase tracking-tight text-red-500">Logout</span>
+</a>
+</nav>
+<div class="mt-auto p-4 neo-border bg-surface-container-lowest flex items-center gap-3">
+<div class="w-10 h-10 neo-border bg-primary-fixed overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A neo-brutalist avatar illustration of a person with minimalist features, set against a bright yellow background. The art style uses thick black outlines and high-contrast colors, aligning with the brand identity of a modern sustainability app." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJZwiypbOujyL1NVjd5kO8kkFQqcQwP0MVSwunm7uuaJVTa-UGcAywa3VAjrYVlnftF9XShzWklFjYx4qvin9bAW-XEpAlfBIzxX_wdGJr-YKxFqPVD3WwJhgT0qw7JJdTUz2M5NdN2_0K_r_hFlDWjg9h_vlmATUcrKfm2lAvWRJjEKN5VeyJ5l7RJY48koDGquD86e6RgQmKbNgnqvD58VEuuX_xxSWWWojQk6qhARieXHKNJyYQnACMKFJv5KRCPKQLvrC_Y-cf"/>
+</div>
+<div>
+<p class="text-xs font-bold leading-none">Alex Rivera</p>
+<p class="text-[10px] text-on-surface-variant italic">Eco-Warrior</p>
+</div>
+</div>
+</aside>
+<!-- TopAppBar (from JSON) -->
+<header class="flex justify-between items-center px-8 py-4 sticky top-0 z-50 ml-64 bg-surface dark:bg-background w-full border-b-4 border-on-surface shadow-[0px_4px_0px_0px_rgba(0,0,0,1)]">
+<div class="flex items-center gap-6">
+<h2 class="text-3xl font-black uppercase text-on-surface dark:text-on-background">EcoTrace</h2>
+<div class="relative w-96">
+<input class="w-full py-2 px-4 neo-border focus:ring-4 focus:ring-primary-container outline-none font-bold bg-surface-container-lowest" placeholder="Search goals..." type="text"/>
+<span class="material-symbols-outlined absolute right-3 top-2.5">search</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 neo-border bg-white hover:bg-primary-container transition-colors active:translate-y-1 active:shadow-none neo-shadow">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 neo-border bg-white hover:bg-primary-container transition-colors active:translate-y-1 active:shadow-none neo-shadow">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 p-8 min-h-screen">
+<div class="max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="mb-12">
+<h1 class="text-6xl font-black uppercase tracking-tighter mb-2">My Environmental Goals</h1>
+<p class="text-xl font-bold bg-primary-container inline-block px-2 py-1 neo-border">Impact Tracker: High Performance Mode</p>
+</div>
+<div class="grid grid-cols-12 gap-8">
+<!-- Left: New Goal Form (Bento Style) -->
+<section class="col-span-12 lg:col-span-4 flex flex-col gap-8">
+<div class="bg-surface-container-lowest neo-border p-6 neo-shadow-lg">
+<h2 class="text-2xl font-black uppercase mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">add_circle</span>
+                            Set New Goal
+                        </h2>
+<form class="flex flex-col gap-4">
+<div>
+<label class="block font-black uppercase text-sm mb-1">Goal Name</label>
+<input class="w-full p-3 neo-border font-bold bg-white focus:bg-primary-container transition-colors" placeholder="e.g., Use Public Transport" type="text"/>
+</div>
+<div>
+<label class="block font-black uppercase text-sm mb-1">Target Value (%)</label>
+<input class="w-full h-8 appearance-none bg-surface-container neo-border cursor-pointer accent-primary" type="range"/>
+</div>
+<div>
+<label class="block font-black uppercase text-sm mb-1">Impact Category</label>
+<select class="w-full p-3 neo-border font-bold bg-white">
+<option>Carbon Footprint</option>
+<option>Water Waste</option>
+<option>Plastic Reduction</option>
+<option>Energy Savings</option>
+</select>
+</div>
+<button class="mt-4 w-full bg-primary-container text-black font-black uppercase py-4 neo-border neo-shadow hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all" type="button">
+                                Activate Challenge
+                            </button>
+</form>
+</div>
+<!-- Motivational Card -->
+<div class="bg-tertiary-container neo-border p-6 neo-shadow relative overflow-hidden h-64 flex flex-col justify-end">
+
+<div class="relative z-10">
+<span class="text-4xl font-black leading-tight uppercase">Small steps,<br/>giant impact.</span>
+</div>
+</div>
+</section>
+<!-- Right: Active & Completed Goals -->
+<section class="col-span-12 lg:col-span-8 flex flex-col gap-8">
+<!-- Active Goals Section -->
+<div class="bg-white neo-border p-8 neo-shadow-lg">
+<div class="flex justify-between items-center mb-8">
+<h2 class="text-3xl font-black uppercase">Active Goals</h2>
+<span id="active-goals-count" class="bg-black text-white px-3 py-1 font-bold text-sm uppercase">2 In Progress</span>
+</div>
+<div id="active-goals-container" class="space-y-8">
+<!-- Goal 1 -->
+<div class="p-6 neo-border bg-surface-container-low hover:bg-surface-bright transition-colors group">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary font-bold">bolt</span>
+<h3 class="text-2xl font-black uppercase">Reduce electricity by 20%</h3>
+</div>
+<p class="font-bold text-on-surface-variant italic">Target: 30 days | Category: Energy</p>
+</div>
+<span class="text-2xl font-black">65%</span>
+</div>
+<div class="w-full h-10 neo-border bg-white overflow-hidden relative">
+<div class="h-full bg-primary-container w-[65%] border-r-4 border-black transition-all duration-1000 ease-out"></div>
+<div class="absolute inset-0 flex items-center justify-center font-black text-xs mix-blend-difference text-white">CURRENT PROGRESS</div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="bg-black text-white px-4 py-2 font-bold uppercase text-xs neo-shadow hover:bg-primary hover:text-black transition-colors">Log Data</button>
+<button class="bg-white px-4 py-2 font-bold uppercase text-xs neo-border hover:bg-error-container transition-colors">Pause</button>
+</div>
+</div>
+<!-- Goal 2 -->
+<div class="p-6 neo-border bg-surface-container-low hover:bg-surface-bright transition-colors">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-primary font-bold">eco</span>
+<h3 class="text-2xl font-black uppercase">Zero plastic month</h3>
+</div>
+<p class="font-bold text-on-surface-variant italic">Target: 31 days | Category: Plastic</p>
+</div>
+<span class="text-2xl font-black">22%</span>
+</div>
+<div class="w-full h-10 neo-border bg-white overflow-hidden relative">
+<div class="h-full bg-primary-container w-[22%] border-r-4 border-black transition-all duration-1000 ease-out"></div>
+</div>
+<div class="mt-4 flex gap-2">
+<button class="bg-black text-white px-4 py-2 font-bold uppercase text-xs neo-shadow hover:bg-primary hover:text-black transition-colors">Log Data</button>
+<button class="bg-white px-4 py-2 font-bold uppercase text-xs neo-border hover:bg-error-container transition-colors">Pause</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Completed Goals Section -->
+<div class="bg-black text-white neo-border p-8 neo-shadow-lg">
+<h2 class="text-3xl font-black uppercase mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                            Victory Wall
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<!-- History Card 1 -->
+<div class="bg-surface-container-highest text-black neo-border p-4 hover:translate-y-[-4px] transition-transform cursor-pointer">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-black uppercase bg-primary-container px-2 py-0.5">COMPLETED MAR 2024</span>
+<span class="material-symbols-outlined text-green-600">verified</span>
+</div>
+<h4 class="font-black uppercase text-lg">Vegan Week Challenge</h4>
+<p class="text-xs font-bold text-on-surface-variant">-12kg CO2 saved</p>
+</div>
+<!-- History Card 2 -->
+<div class="bg-surface-container-highest text-black neo-border p-4 hover:translate-y-[-4px] transition-transform cursor-pointer">
+<div class="flex justify-between mb-2">
+<span class="text-[10px] font-black uppercase bg-primary-container px-2 py-0.5">COMPLETED FEB 2024</span>
+<span class="material-symbols-outlined text-green-600">verified</span>
+</div>
+<h4 class="font-black uppercase text-lg">Compost Mastery</h4>
+<p class="text-xs font-bold text-on-surface-variant">100% waste diversion</p>
+</div>
+</div>
+<button class="w-full mt-6 py-3 border-2 border-dashed border-white font-black uppercase hover:bg-white hover:text-black transition-colors">
+                            View Full Archive
+                        </button>
+</div>
+</section>
+</div>
+<!-- Dashboard Stats Footer (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 mt-12 mb-12">
+<div class="bg-white neo-border p-6 neo-shadow">
+<p class="text-xs font-black uppercase text-on-surface-variant mb-1">Total Impact</p>
+<p class="text-4xl font-black uppercase">420<span class="text-xl">kg</span></p>
+<p class="text-xs font-bold text-primary mt-2">↑ 12% vs last month</p>
+</div>
+<div class="bg-white neo-border p-6 neo-shadow">
+<p class="text-xs font-black uppercase text-on-surface-variant mb-1">Streak</p>
+<p class="text-4xl font-black uppercase">14<span class="text-xl">days</span></p>
+<div class="flex gap-1 mt-2">
+<div class="w-2 h-2 bg-primary-container neo-border"></div>
+<div class="w-2 h-2 bg-primary-container neo-border"></div>
+<div class="w-2 h-2 bg-primary-container neo-border"></div>
+<div class="w-2 h-2 bg-primary-container neo-border"></div>
+</div>
+</div>
+<div class="bg-white neo-border p-6 neo-shadow">
+<p class="text-xs font-black uppercase text-on-surface-variant mb-1">Badges</p>
+<p class="text-4xl font-black uppercase">08</p>
+<p class="text-xs font-bold text-on-surface-variant mt-2 italic">Next: Carbon Ninja</p>
+</div>
+<div class="bg-primary-container neo-border p-6 neo-shadow group cursor-pointer overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-xs font-black uppercase mb-1">Rank</p>
+<p class="text-4xl font-black uppercase">#12</p>
+<p class="text-xs font-bold mt-2">Global Community</p>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl opacity-10 rotate-12 group-hover:rotate-0 transition-transform">leaderboard</span>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB (Suppressed based on logic for Goals Details screen if needed, but keeping for New Goal intent) -->
+<button onclick="toggleGoalModal(true)" class="fixed bottom-8 right-8 w-16 h-16 bg-primary-container neo-border neo-shadow-lg flex items-center justify-center group active:translate-x-1 active:translate-y-1 active:shadow-none transition-all z-[100]">
+<span class="material-symbols-outlined text-3xl font-black group-hover:rotate-90 transition-transform">add</span>
+</button>
+
+<!-- Create Goal Modal -->
+<div id="goal-modal" class="hidden fixed inset-0 bg-black/50 z-[1000] flex items-center justify-center p-4">
+  <div class="bg-white border-4 border-black p-8 max-w-md w-full neo-shadow flex flex-col gap-4">
+    <div class="flex justify-between items-center mb-2">
+      <h3 class="text-3xl font-black uppercase">New Goal</h3>
+      <button onclick="toggleGoalModal(false)" class="p-1 px-3 border-4 border-black hover:bg-red-400 transition-colors font-black">X</button>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-black text-xs uppercase tracking-widest text-black">Goal Title</label>
+      <input id="new-goal-title" class="w-full border-4 border-black p-3 font-bold focus:ring-0 focus:outline-none" placeholder="e.g., E-Bike Commute" type="text"/>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-black text-xs uppercase tracking-widest text-black">Target Reduction (kg CO₂)</label>
+      <input id="new-goal-target" class="w-full border-4 border-black p-3 font-bold focus:ring-0 focus:outline-none" placeholder="e.g., 50" type="number"/>
+    </div>
+    <div class="flex flex-col gap-1">
+      <label class="font-black text-xs uppercase tracking-widest text-black">Deadline (Days)</label>
+      <input id="new-goal-deadline" class="w-full border-4 border-black p-3 font-bold focus:ring-0 focus:outline-none" placeholder="e.g., 30" type="number"/>
+    </div>
+    <button onclick="handleCreateGoalSubmit()" class="mt-4 bg-[#FFEB3B] text-black border-4 border-black py-4 font-black uppercase text-lg tracking-tighter neo-shadow-small neo-shadow-button transition-all">
+      Create Goal
+    </button>
+  </div>
+</div>
+
+<script>
+        function toggleGoalModal(show) {
+            const modal = document.getElementById('goal-modal');
+            if (modal) {
+                if (show) {
+                    modal.classList.remove('hidden');
+                } else {
+                    modal.classList.add('hidden');
+                }
+            }
+        }
+
+        async function handleCreateGoalSubmit() {
+            const titleInput = document.getElementById('new-goal-title');
+            const targetInput = document.getElementById('new-goal-target');
+            const deadlineInput = document.getElementById('new-goal-deadline');
+
+            const title = titleInput ? titleInput.value.trim() : '';
+            const target = targetInput ? parseFloat(targetInput.value) : 0;
+            const deadline = deadlineInput ? parseInt(deadlineInput.value) : 0;
+
+            if (!title) {
+                alert('Please enter a goal title');
+                return;
+            }
+            if (isNaN(target) || target <= 0) {
+                alert('Please enter a valid target CO2 reduction');
+                return;
+            }
+            if (isNaN(deadline) || deadline < 7 || deadline > 365) {
+                alert('Deadline must be between 7 and 365 days');
+                return;
+            }
+
+            try {
+                const result = await createGoal({
+                    title: title,
+                    target_kg: target,
+                    deadline_days: deadline
+                });
+                alert('Goal created successfully! 🎉');
+                toggleGoalModal(false);
+                window.location.reload();
+            } catch(e) {
+                alert('Failed to create goal: ' + e.message);
+            }
+        }
+
+        // Simple Micro-interactions
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'translate(2px, 2px)';
+                btn.style.boxShadow = 'none';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = '';
+                btn.style.boxShadow = '';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = '';
+                btn.style.boxShadow = '';
+            });
+        });
+
+        // Dynamic progress bar animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const bars = document.querySelectorAll('.h-full.bg-primary-container');
+            bars.forEach(bar => {
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.width = targetWidth;
+                }, 300);
+            });
+        });
+
+        document.addEventListener("DOMContentLoaded", async () => {
+            const userId = localStorage.getItem('eco_user');
+            if (userId) {
+                try {
+                    const goals = await fetchGoals(userId);
+                    const container = document.getElementById('active-goals-container');
+                    const countBadge = document.getElementById('active-goals-count');
+                    
+                    const activeGoals = goals.filter(g => !g.completed);
+                    countBadge.innerText = activeGoals.length + " Active";
+                    
+                    if(activeGoals.length > 0) {
+                        container.innerHTML = activeGoals.map(g => {
+                            const progressPercent = g.progress_percent !== undefined ? g.progress_percent : 0;
+                            const targetVal = g.targetKg !== undefined ? g.targetKg + ' kg' : 'N/A';
+                            return `
+                                <div class="p-6 neo-border bg-surface-container-low hover:bg-surface-bright transition-colors group">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <div>
+                                            <div class="flex items-center gap-2 mb-2">
+                                                <span class="material-symbols-outlined text-primary font-bold">track_changes</span>
+                                                <h3 class="text-2xl font-black uppercase">${g.title}</h3>
+                                            </div>
+                                            <p class="font-bold text-on-surface-variant italic">Target: ${targetVal} | Deadline: ${g.deadlineDays || 30} days</p>
+                                        </div>
+                                        <span class="text-2xl font-black">${progressPercent}%</span>
+                                    </div>
+                                    <div class="w-full h-10 neo-border bg-white overflow-hidden relative">
+                                        <div class="h-full bg-primary-container border-r-4 border-black transition-all duration-1000 ease-out" style="width: ${progressPercent}%;"></div>
+                                        <div class="absolute inset-0 flex items-center justify-center font-black text-xs mix-blend-difference text-white">CURRENT PROGRESS</div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('');
+                    } else {
+                        container.innerHTML = `
+                            <div class="p-12 border-4 border-dashed border-on-surface text-center">
+                                <p class="font-bold text-lg mb-2">No active goals yet!</p>
+                                <p class="text-sm text-on-surface-variant mb-4">Set a goal to start reducing your carbon footprint.</p>
+                                <button onclick="toggleGoalModal(true)" class="px-6 py-2 bg-primary-container border-4 border-black font-black uppercase neo-shadow hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Create a Goal</button>
+                            </div>
+                        `;
+                    }
+                } catch (e) {
+                    console.error("Failed to load goals", e);
+                }
+            }
+        });
+    </script>
+</body></html>
